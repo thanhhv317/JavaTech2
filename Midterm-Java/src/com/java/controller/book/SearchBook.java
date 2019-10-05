@@ -79,7 +79,7 @@ public class SearchBook extends HttpServlet {
 					"            <td>%d</td>\r\n" + 
 					"            <td>%s</td>\r\n" + 
 					"            <td>%s</td>\r\n" + 
-					"            <td>Active</td>\r\n"+
+					"            <td>%s</td>\r\n"+
 					"            <td>\r\n" + 
 					"              <div class=\"btn-group\">\r\n" + 
 					"                <button type=\"button\" class=\"btn btn-secondary\"><i class=\"fas fa-edit\"></i></button>&nbsp;\r\n" + 
@@ -87,7 +87,7 @@ public class SearchBook extends HttpServlet {
 					"              </div>\r\n" + 
 					"            </td>\r\n" + 
 					"          </tr>", 
-					i+1, book.bookName, book.image, book.publisherName,book.categoryName, book.author, book.price, book.quantity,strDate, book.createBy, book.bookID);
+					i+1, book.bookName, book.image, book.publisherName,book.categoryName, book.author, book.price, book.quantity,strDate, book.createBy,book.status?"Active":"None", book.bookID);
 	}
 		return res;
 	}

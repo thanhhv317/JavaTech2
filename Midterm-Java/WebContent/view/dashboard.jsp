@@ -190,7 +190,7 @@
             <td><%= book.quantity %></td>
             <td><%= book.createDate %></td>
             <td><%= book.createBy %></td>
-            <td>Active</td>
+            <td><%= book.status?"Active":"None" %></td>
             <td>
               <div class="btn-group">
                 <button type="button" class="btn btn-secondary"><i class="fas fa-edit"></i></button>&nbsp;
@@ -279,6 +279,7 @@
 			 
 		}
 		$("#btnSearch").click(function(){
+			
 			let name=$("#bookName").val();
 			$.ajax({
 				  url: "${pageContext.request.contextPath}/SearchBook", 
