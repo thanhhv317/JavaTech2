@@ -93,6 +93,7 @@ public class AddBook extends HttpServlet{
 		String descriptionBook = req.getParameter("descriptionBook");
 		int opStatus = Integer.parseInt(req.getParameter("opStatus"));
 		String date = req.getParameter("createDate");
+		HttpSession session = req.getSession();
 		int userId = (int) session.getAttribute("userID");	
         String fileName = uploadFile(req);
         
