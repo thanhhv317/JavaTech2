@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="com.java.model.PublisherModel" %>
+<%@page import="com.java.model.CategoryModel" %>
 <!doctype html>
 <html lang="en">
   <head>
@@ -114,68 +116,71 @@
 
   <!-- content -->
   <div class="container">
-      <form action="request.getContextPath()/AddBook" method="POST">
+      <form action="${pageContext.request.contextPath}/AddBook" method="POST">
     <div class="row">
       
       <div class="col-6">
           <div class="form-group">
             <label>Tên sản phẩm</label>
-            <input type="text" class="form-control" id="nameBook"/>
+            <input type="text" class="form-control" name="nameBook"/>
           </div>
           <div class="form-group">
             <label>Danh mục</label>
-            <select class="form-control" id="opBook">
-            	<%	ArrayList<String> arr = (ArrayList<String>)request.getAttribute("dataCate"); 
-            		for(int i=0; i<arr.size(); ++i){%>
-            			<option><%=arr.get(i) %></option>
+            <select class="form-control" name="opBook">
+            	<%	ArrayList<CategoryModel> arrCate = (ArrayList<CategoryModel>)request.getAttribute("dataCate"); 
+            		for(int i=0; i<arrCate.size(); ++i){
+            			CategoryModel cate = arrCate.get(i);
+            		%>
+            			<option value="<%= cate.categoryID %>"><%=arrCate.get(i).name %></option>
             		<%}
             	%>
-         
             </select>
           </div>
            <div class="form-group">
             <label>Nhà xuất bản</label>
-            <select class="form-control" id="opNXB">
-              	<% arr = (ArrayList<String>)request.getAttribute("dataPub"); 
-            		for(int i=0; i<arr.size(); ++i){%>
-            			<option><%=arr.get(i) %></option>
+            <select class="form-control" name="opNXB">
+              	<% ArrayList<PublisherModel> arrPub = (ArrayList<PublisherModel>)request.getAttribute("dataPub"); 
+            		for(int i=0; i<arrPub.size(); ++i){
+            			PublisherModel pub = arrPub.get(i);
+            		%>
+            			<option value="<%= pub.publisherID %>"><%= pub.publisherName %></option>
             		<%}
             	%>
             </select>
           </div>
           <div class="form-group">
             <label>Số lượng</label>
-            <input type="text" class="form-control" id="quantityBook" />
+            <input type="text" class="form-control" name="quantityBook" />
           </div>
           <div class="form-group">
             <label>Giá</label>
-            <input type="text" class="form-control" id="priceBook" />
+            <input type="text" class="form-control" name="priceBook" />
           </div>
           <div class="form-group">
             <label>Mô tả</label>
-            <textarea class="form-control" rows="3" id="descriptionBook"></textarea>
+            <textarea class="form-control" rows="3" name="descriptionBook"></textarea>
           </div>
       </div>
 
       <div class="col-6">
         <div class="form-group">
           <label>Ngày nhập</label>
-          <input type="date" class="form-control" id="createDate">
+          <input type="date" class="form-control" name="createDate">
         </div>
         <div class="form-group">
             <label>Tác giả</label>
-            <input type="text" class="form-control" id="authBook" />
+            <input type="text" class="form-control" name="authBook" />
         </div>
         <div class="form-group">
           <label>Trạng thái</label>
-          <select class="form-control" id="opStatus">
+          <select class="form-control" name="opStatus">
             <option>Enable</option>
             <option>Disable</option>
           </select>
         </div>
         <div class="form-group">
           <label>Hình ảnh</label>
-          <input class="form-control" type="file" id="imgInp" />
+          <input class="form-control" type="file" name="imgInp" />
           <img id="blah" class="image-thumbnail mt-2" />
         </div>
         
