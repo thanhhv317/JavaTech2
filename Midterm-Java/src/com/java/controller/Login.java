@@ -49,6 +49,7 @@ public class Login extends HttpServlet {
 						u.email=rs.getString(7);
 						HttpSession session = req.getSession();
 						session.setAttribute("name", u.name);
+						session.setAttribute("userID", u.userID);
 						resp.sendRedirect(req.getContextPath()+"/Dashboard");
 						return;
 					}

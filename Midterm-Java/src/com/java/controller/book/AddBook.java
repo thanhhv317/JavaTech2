@@ -13,10 +13,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.java.model.CategoryModel;
 import com.java.model.ConnectDB;
 import com.java.model.PublisherModel;
+
+import sun.font.CreatedFontTracker;
 
 @WebServlet("/AddBook")
 public class AddBook extends HttpServlet{
@@ -68,23 +71,30 @@ public class AddBook extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html;charset=UTF-8");
 		req.setCharacterEncoding("utf-8");
-		ConnectDB conn = new ConnectDB();
+		
 		String name = req.getParameter("nameBook");
-		String opBook = req.getParameter("opBook");
-		String opNXB = req.getParameter("opNXB");
+		int opBook = Integer.parseInt(req.getParameter("opBook"));
+		String authBook = req.getParameter("authBook");
+		int opNXB = Integer.parseInt(req.getParameter("opNXB"));
 		int quantityBook = Integer.parseInt(req.getParameter("quantityBook"));
 		int priceBook = Integer.parseInt(req.getParameter("priceBook"));
 		String descriptionBook = req.getParameter("descriptionBook");
-		try {
-			Date date = new SimpleDateFormat("dd/MM/yyyy").parse(req.getParameter("createDate"));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}  
+		int opStatus = Integer.parseInt(req.getParameter("opStatus"));
+		String date = req.getParameter("createDate");
 		String imgInp = req.getParameter("imgInp");
-		req.setAttribute("data", imgInp);
+		ConnectDB conn = new ConnectDB();
+		HttpSession session = req.getSession();
+		int userId = (int) session.getAttribute("userID");
+		String sql = "INSERT INTO books VALUES (null,'"+opBook+"','"+opNXB+"','"+name+"','"+authBook+"','"+priceBook+"','"+imgInp+"','"+descriptionBook+"','"+quantityBook+"','"+date+"','"+userId+"','"+opStatus+"')";
 		
-		req.getRequestDispatcher("view/test.jsp").forward(req, resp);
+		boolean check = conn.updateData(sql);
+		if(check) {
+			resp.sendRedirect(req.getContextPath()+"/Dashboard");
+		}
+		else {
+			resp.sendRedirect(req.getContextPath()+"/view/Error.jsp");
+		}
+		
 	}
 
 }

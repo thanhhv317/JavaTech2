@@ -35,8 +35,8 @@ CREATE TABLE `books` (
   `BookName` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `Author` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `Price` int(11) NOT NULL,
-  `Image` int(11) NOT NULL,
-  `Description` int(11) NOT NULL,
+  `Image` varchar(100) NOT NULL,
+  `Description` text NOT NULL,
   `Quantity` int(11) NOT NULL,
   `CreateDate` datetime NOT NULL,
   `CreateBy` int(11) NOT NULL,
@@ -61,7 +61,7 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`CategoryID`, `CategoryName`, `Quantity`, `Status`) VALUES
-(1, 'Ti?u thuy?t', 200, 1);
+(1, 'Tiểu thuyết', 200, 1);
 
 -- --------------------------------------------------------
 
@@ -100,7 +100,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`UserID`, `Name`, `UserName`, `Password`, `Address`, `Phone`, `Email`) VALUES
 (2, 'Minh', 'minhlc', 'minhlc', '93', '0938964143', '.ll'),
 (3, 'Admin', 'admin1', '21232f297a57a5a743894a0e4a801fc3', '123', '123', '123'),
-(4, 'Thành', 'thanhhv', '36fc0417a7a5beab37e3e490c4543d55', '100', '123', 'thanhhv@gmail.com');
+(4, 'Thành', 'thanhhv', '36fc0417a7a5beab37e3e490c4543d55', '100', '123', 'thanhhv@gmail.com'),
+(4, 'Kỳ', 'kydq', '579cbb1fdf2da496711e71622c932112', '100', '123', 'kydq@gmail.com');
 
 --
 -- Indexes for dumped tables
