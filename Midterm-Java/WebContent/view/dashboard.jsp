@@ -140,7 +140,7 @@
           </li>
           <li class="breadcrumb-item active">
             <div class="btn-group" role="group">
-              <a href="${pageContext.request.contextPath}/view/add-product.jsp" class="btn btn-outline-success"><i class="fas fa-plus"></i> Thêm mới</a>
+              <a href="${pageContext.request.contextPath}/AddBook" class="btn btn-outline-success"><i class="fas fa-plus"></i> Thêm mới</a>
               <button type="button" class="btn btn-outline-primary">Thống kê</button>
             </div>
           </li>

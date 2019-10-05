@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@page import="java.util.ArrayList"%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -17,7 +18,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    <!-- css style -->SS
+    <!-- css style -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/dashboard.css">
 
     <title>Admin</title>
@@ -73,7 +74,14 @@
           <li class="nav-item">
             <div class="btn-group dropleft">
               <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Minh LC
+                <% 
+	                if(session.getAttribute("name") != null){
+	                	out.print(session.getAttribute("name"));
+	                }
+	                else{
+	                	response.sendRedirect(request.getContextPath()+"/Login");
+	                }
+                %>
               </button>
               <div class="dropdown-menu">
                 <div class="text-center">
@@ -92,26 +100,6 @@
     </nav>
   <!-- end navbar -->
 
-  <!-- modal view product detail -->
-  <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-      <div class="modal-content">
-        <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Thông tin sản phẩm</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-      </div>
-    </div>
-  </div>
-  <!-- end modal product detail -->
   <div class="row">
     <div class="container">
       <nav aria-label="breadcrumb">
@@ -126,52 +114,61 @@
 
   <!-- content -->
   <div class="container">
-      <form>
+      <form action="request.getContextPath()/AddBook" method="POST">
     <div class="row">
       
       <div class="col-6">
           <div class="form-group">
             <label>Tên sản phẩm</label>
-            <input type="text" class="form-control" placeholder="khéo ăn khéo nói sẽ có được thiên hạ">
+            <input type="text" class="form-control" id="nameBook"/>
           </div>
           <div class="form-group">
             <label>Danh mục</label>
-            <select class="form-control">
-              <option>Tiểu thuyết</option>
-              <option>Ngôn tình</option>
-              <option>Truyện tranh</option>
+            <select class="form-control" id="opBook">
+            	<%	ArrayList<String> arr = (ArrayList<String>)request.getAttribute("dataCate"); 
+            		for(int i=0; i<arr.size(); ++i){%>
+            			<option><%=arr.get(i) %></option>
+            		<%}
+            	%>
+         
             </select>
           </div>
            <div class="form-group">
             <label>Nhà xuất bản</label>
-            <select class="form-control">
-              <option>NXB trẻ</option>
-              <option>NXB Hà Nội</option>
-              <option>NXB TP Hồ Chí Minh</option>
+            <select class="form-control" id="opNXB">
+              	<% arr = (ArrayList<String>)request.getAttribute("dataPub"); 
+            		for(int i=0; i<arr.size(); ++i){%>
+            			<option><%=arr.get(i) %></option>
+            		<%}
+            	%>
             </select>
           </div>
           <div class="form-group">
             <label>Số lượng</label>
-            <input type="text" class="form-control" placeholder="500">
+            <input type="text" class="form-control" id="quantityBook" />
           </div>
           <div class="form-group">
             <label>Giá</label>
-            <input type="text" class="form-control" placeholder="37000">
+            <input type="text" class="form-control" id="priceBook" />
           </div>
           <div class="form-group">
             <label>Mô tả</label>
-            <textarea class="form-control" rows="3"></textarea>
+            <textarea class="form-control" rows="3" id="descriptionBook"></textarea>
           </div>
       </div>
 
       <div class="col-6">
         <div class="form-group">
           <label>Ngày nhập</label>
-          <input type="date" class="form-control">
+          <input type="date" class="form-control" id="createDate">
+        </div>
+        <div class="form-group">
+            <label>Tác giả</label>
+            <input type="text" class="form-control" id="authBook" />
         </div>
         <div class="form-group">
           <label>Trạng thái</label>
-          <select class="form-control">
+          <select class="form-control" id="opStatus">
             <option>Enable</option>
             <option>Disable</option>
           </select>
@@ -181,18 +178,17 @@
           <input class="form-control" type="file" id="imgInp" />
           <img id="blah" class="image-thumbnail mt-2" />
         </div>
+        
       </div>
 
       <br>
       <div class="container mt-2 mb-4">
-        <button class="btn btn-success"><i class="fas fa-save"></i> Save</button> 
+        <button class="btn btn-success" id="saveBook"><i class="fas fa-save"></i> Save</button> 
       </div>
     </div>
     </form>
 
   </div>
-
-	<h1>${pageContext.request.contextPath}</h1>
   <!-- end content -->
 
   </div>
@@ -208,6 +204,5 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
   <script src="${pageContext.request.contextPath}/js/dashboard.js"></script>
-
 </body>
 </html>
