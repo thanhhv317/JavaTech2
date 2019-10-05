@@ -99,7 +99,6 @@ public class AddBook extends HttpServlet{
         
 		String sql = "INSERT INTO books VALUES (null,'"+opBook+"','"+opNXB+"','"+name+"','"+authBook+"','"+priceBook+"','"+fileName+"','"+descriptionBook+"','"+quantityBook+"','"+date+"','"+userId+"','"+opStatus+"')";
 		ConnectDB conn = new ConnectDB();
-		conn.updateData(sql);
 		
 		boolean check = conn.updateData(sql);
 		if(check) {
