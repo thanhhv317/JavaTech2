@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- font-awesome -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- css style -->
+    <link rel="stylesheet" type="text/css" href="dashboard.css">
+
+    <title>Admin</title>
+  </head>
+<body>
+
+<div class="wrapper">
+
+  <!-- sidebar  -->
+  <nav id="sidebar">
+    <div class="box-sidebar">
+    <div class="sidebar-header">
+      <h3>Dashboard</h3>
+    </div>
+
+    <ul class="list-unstyled components">
+      <li>
+        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-book"></i> Sản Phẩm</a>
+        <ul class="collapse list-unstyled" id="homeSubmenu">
+          <li>
+            <a href="dashboard.html">Sản Phẩm 1</a>
+          </li>
+          <li>
+            <a href="#">Sản Phẩm 2</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#"><i class="fa fa-fw fa-database"></i> Danh mục</a>
+      </li>
+      <li>
+        <a href="#"><i class="fa fa-fw fa-user"></i> Nhà sản xuất</a>
+      </li>
+    </ul>
+  </div>
+  </nav>
+  <!-- end sidebar -->
+
+  <div class="container">
+  <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+
+      <button type="button" id="sidebarCollapse" class="btn btn-info">
+      <i class="fa fa-home"></i><span> Menu</span>
+      </button>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          
+          <li class="nav-item">
+            <div class="btn-group dropleft">
+              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Minh LC
+              </button>
+              <div class="dropdown-menu">
+                <div class="text-center">
+                  <img src="https://via.placeholder.com/150x150" class="rounded-circle" alt="nguoi-dung">
+                </div>
+                <div class="btn-group mt-2 m-1 d-flex justify-content-center" role="group">
+                  <button class="btn btn-success" title="log-out"><i class="fas fa-sign-out-alt"></i></button>
+                  <button class="btn btn-primary" title="information"><i class="fas fa-address-card"></i></button>
+                </div>
+              </div>
+            </div>
+          </li>
+           
+        </ul>
+      </div>
+    </nav>
+  <!-- end navbar -->
+
+  <!-- modal view product detail -->
+  <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Thông tin sản phẩm</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+      </div>
+    </div>
+  </div>
+  <!-- end modal product detail -->
+  <div class="row">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+           <li class="breadcrumb-item active">
+           <h2>Thêm sản phẩm</h2>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <!-- content -->
+  <div class="container">
+      <form>
+    <div class="row">
+      
+      <div class="col-6">
+          <div class="form-group">
+            <label>Tên sản phẩm</label>
+            <input type="text" class="form-control" placeholder="khéo ăn khéo nói sẽ có được thiên hạ">
+          </div>
+          <div class="form-group">
+            <label>Danh mục</label>
+            <select class="form-control">
+              <option>Tiểu thuyết</option>
+              <option>Ngôn tình</option>
+              <option>Truyện tranh</option>
+            </select>
+          </div>
+           <div class="form-group">
+            <label>Nhà xuất bản</label>
+            <select class="form-control">
+              <option>NXB trẻ</option>
+              <option>NXB Hà Nội</option>
+              <option>NXB TP Hồ Chí Minh</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Số lượng</label>
+            <input type="text" class="form-control" placeholder="500">
+          </div>
+          <div class="form-group">
+            <label>Giá</label>
+            <input type="text" class="form-control" placeholder="37000">
+          </div>
+          <div class="form-group">
+            <label>Mô tả</label>
+            <textarea class="form-control" rows="3"></textarea>
+          </div>
+      </div>
+
+      <div class="col-6">
+        <div class="form-group">
+          <label>Ngày nhập</label>
+          <input type="date" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Trạng thái</label>
+          <select class="form-control">
+            <option>Enable</option>
+            <option>Disable</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Hình ảnh</label>
+          <input class="form-control" type="file" id="imgInp" />
+          <img id="blah" class="image-thumbnail mt-2" />
+        </div>
+      </div>
+
+      <br>
+      <div class="container mt-2 mb-4">
+        <button class="btn btn-success"><i class="fas fa-save"></i> Save</button> 
+      </div>
+    </div>
+    </form>
+
+  </div>
+
+
+  <!-- end content -->
+
+  </div>
+</div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  <!-- jquery preview -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+  <script src="dashboard.js"></script>
+
+</body>
+</html>
