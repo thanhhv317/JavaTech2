@@ -93,15 +93,14 @@ public class AddBook extends HttpServlet{
 		String descriptionBook = req.getParameter("descriptionBook");
 		int opStatus = Integer.parseInt(req.getParameter("opStatus"));
 		String date = req.getParameter("createDate");
-		String imgInp = req.getParameter("imgInp");
-		ConnectDB conn = new ConnectDB();
-		HttpSession session = req.getSession();
 		int userId = (int) session.getAttribute("userID");	
         String fileName = uploadFile(req);
-		req.setAttribute("abc", fileName);
-		//req.getRequestDispatcher("view/test.jsp").forward(req, resp);
+        
+        
 		String sql = "INSERT INTO books VALUES (null,'"+opBook+"','"+opNXB+"','"+name+"','"+authBook+"','"+priceBook+"','"+fileName+"','"+descriptionBook+"','"+quantityBook+"','"+date+"','"+userId+"','"+opStatus+"')";
+		ConnectDB conn = new ConnectDB();
 		conn.updateData(sql);
+		
 		boolean check = conn.updateData(sql);
 		if(check) {
 			resp.sendRedirect(req.getContextPath()+"/Dashboard");
