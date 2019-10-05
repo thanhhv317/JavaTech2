@@ -116,7 +116,7 @@
 
   <!-- content -->
   <div class="container">
-      <form action="${pageContext.request.contextPath}/AddBook" method="POST">
+      <form action="${pageContext.request.contextPath}/AddBook" method="POST" enctype="multipart/form-data">
     <div class="row">
       
       <div class="col-6">
@@ -180,7 +180,7 @@
         </div>
         <div class="form-group">
           <label>Hình ảnh</label>
-          <input class="form-control" type="file" name="imgInp" />
+          <input class="form-control" type="file" name="photo" />
           <img id="blah" class="image-thumbnail mt-2" />
         </div>
         
