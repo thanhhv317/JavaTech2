@@ -121,7 +121,7 @@
         		<div class="btn-group" role="group">
         			
       				<select class="form-control" "browser-default custom-select" id="opFilter">
-      				<option class= selected value="0">Tất cả</option>
+      				<option id="all-option" class= selected value="0">Tất cả</option>
       				<%ArrayList<CategoryModel> arrCate =(ArrayList<CategoryModel>)request.getAttribute("category");
 				 	for(int i=0;i<arrCate.size();++i){
 				 		CategoryModel cate= arrCate.get(i);
@@ -193,7 +193,7 @@
             <td><%= book.status?"Active":"None" %></td>
             <td>
               <div class="btn-group">
-                <button type="button" class="btn btn-secondary"><i class="fas fa-edit"></i></button>&nbsp;
+                <button type="button" onclick="editItem(<%= book.bookID %>)" class="btn btn-secondary"><i class="fas fa-edit"></i></button>&nbsp;
                 <button type="button" onclick="deleteItem(<%= book.bookID %>)" class="btn btn-secondary"><i class="fas fa-trash"></i></button>
               </div>
             </td>
@@ -203,27 +203,7 @@
         </tbody>
       </table>
 
-    <!-- pagination -->
-    <div class="container d-flex justify-content-center">
-      <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      </div>
-<!-- end pagination -->
+  
 
     </div>
   </div>
@@ -290,9 +270,27 @@
 				  success: function(result){
 					  //alert(result);
 				    $("#listBook").html(result);
+				    $("#opFilter").val(10).change();
+			    }
+			  });
+		});
+		$("#opFilter").change(function(){
+			let id = document.getElementById(this.id).value;
+			$.ajax({
+				  url: "${pageContext.request.contextPath}/FilterBook", 
+				  type: "POST",
+				  data:{
+					  categoryID: id,
+				  },
+				  success: function(result){
+				    $("#listBook").html(result);
 				  }
 			  });
 		});
+		
+		function editItem(id) {
+			location.href="${pageContext.request.contextPath}/EditBook?id="+id;
+		}
 	</script>
 </body>
 </html>

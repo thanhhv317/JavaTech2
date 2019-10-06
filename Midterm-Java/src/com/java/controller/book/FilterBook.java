@@ -16,24 +16,34 @@ import javax.servlet.http.HttpServletResponse;
 import com.java.model.BookModel;
 import com.java.model.ConnectDB;
 
-@WebServlet("/SearchBook")
-public class SearchBook extends HttpServlet {
+@WebServlet("/FilterBook")
+public class FilterBook extends HttpServlet {
 	/**
 	 * 
 	 */
+	ConnectDB conn=new ConnectDB();
 	private static final long serialVersionUID = 1L;
-	ConnectDB conn = new ConnectDB();
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html;charset=UTF-8");
 		req.setCharacterEncoding("utf-8");
-		String name=req.getParameter("name");
-		String sql="select b.BookID, c.CategoryName, p.PublisherName, b.BookName, b.Author, " + 
+		String categoryID=req.getParameter("categoryID");
+		String sql="";
+		if (!categoryID.equals("0")){
+		sql="select b.BookID, c.CategoryName, p.PublisherName, b.BookName, b.Author, " + 
 				"b.Price, b.Image, b.Description, b.Quantity, b.CreateDate, u.Name, b.Status from books b " + 
 				"join categories c on b.CategoryID=c.CategoryID " + 
 				"join publishers p on b.PublisherID= p.PublisherID " + 
 				"join users u on b.CreateBy=u.UserID "+
-				"where b.BookName like '%"+name+"%'";
+				"where b.CategoryID="+categoryID;
+		}
+		else {
+			sql="select b.BookID, c.CategoryName, p.PublisherName, b.BookName, b.Author, " + 
+					"b.Price, b.Image, b.Description, b.Quantity, b.CreateDate, u.Name, b.Status from books b " + 
+					"join categories c on b.CategoryID=c.CategoryID " + 
+					"join publishers p on b.PublisherID= p.PublisherID " + 
+					"join users u on b.CreateBy=u.UserID ";
+		}
 		ArrayList<BookModel> arrBook = new ArrayList<BookModel>();
 		ResultSet rs = conn.getData(sql);
 			try {
@@ -82,12 +92,12 @@ public class SearchBook extends HttpServlet {
 					"            <td>%s</td>\r\n"+
 					"            <td>\r\n" + 
 					"              <div class=\"btn-group\">\r\n" + 
-					"                <button type=\"button\" onclick=\"editItem(%d)\" class=\"btn btn-secondary\"><i class=\"fas fa-edit\"></i></button>&nbsp;\r\n" + 
+					"                <button type=\"button\" class=\"btn btn-secondary\"><i class=\"fas fa-edit\"></i></button>&nbsp;\r\n" + 
 					"                <button type=\"button\" onclick=\"deleteItem(%d)\" class=\"btn btn-secondary\"><i class=\"fas fa-trash\"></i></button>\r\n" + 
 					"              </div>\r\n" + 
 					"            </td>\r\n" + 
 					"          </tr>", 
-					i+1, book.bookName, book.image, book.publisherName,book.categoryName, book.author, book.price, book.quantity,strDate, book.createBy,book.status?"Active":"None", book.bookID,book.bookID);
+					i+1, book.bookName, book.image, book.publisherName,book.categoryName, book.author, book.price, book.quantity,strDate, book.createBy,book.status?"Active":"None", book.bookID);
 	}
 		return res;
 	}
