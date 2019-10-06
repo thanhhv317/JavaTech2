@@ -96,9 +96,9 @@ public class AddBook extends HttpServlet{
 		HttpSession session = req.getSession();
 		int userId = (int) session.getAttribute("userID");	
         String fileName = uploadFile(req);
+       // resp.getWriter().print(opBook);
         
-        
-		String sql = "INSERT INTO books VALUES (null,'"+opBook+"','"+opNXB+"','"+name+"','"+authBook+"','"+priceBook+"','"+fileName+"','"+descriptionBook+"','"+quantityBook+"','"+date+"','"+userId+"','"+opStatus+"')";
+		String sql = "INSERT INTO books VALUES (null,"+opBook+","+opNXB+",'"+name+"','"+authBook+"',"+priceBook+",'"+fileName+"','"+descriptionBook+"',"+quantityBook+",'"+date+"',"+userId+","+opStatus+")";
 		ConnectDB conn = new ConnectDB();
 		
 		boolean check = conn.updateData(sql);

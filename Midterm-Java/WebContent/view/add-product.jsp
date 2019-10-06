@@ -175,7 +175,7 @@
           <label>Trạng thái</label>
           <select class="form-control" name="opStatus">
             <option value="1">Enable</option>
-            <option value="0	">Disable</option>
+            <option value="0">Disable</option>
           </select>
         </div>
         <div class="form-group">
