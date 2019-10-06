@@ -183,7 +183,7 @@ public class EditBook extends HttpServlet{
         }catch(Exception e){
             fileName = "";
         }
-        return UPLOAD_DIR+"/"+fileName;
+        return fileName;
     }
     private String  getFileName(Part part){
         for(String content : part.getHeader("content-disposition").split(";")){

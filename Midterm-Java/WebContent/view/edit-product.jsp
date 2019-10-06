@@ -197,7 +197,7 @@
         <div class="form-group">
           <label>Hình ảnh</label>
           <input class="form-control" name="image" type="file" id="imgInp" />
-          <img id="blah" src="<%= book.image %>" class="image-thumbnail mt-2" />
+          <img id="blah" src="images/<%= book.image %>" class="image-thumbnail mt-2" />
         </div>
       </div>
 

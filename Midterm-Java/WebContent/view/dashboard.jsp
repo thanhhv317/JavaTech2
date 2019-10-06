@@ -181,7 +181,7 @@
             <th scope="row"><%= i+1 %></th>
             <td><a class="view-product" data-toggle="modal" data-target=".bd-example-modal-xl"><%= book.bookName %></a></td>
             <td>
-              <img src="<%= book.image %>" alt="do-re-mon" class="img-thumbnail product-img">
+              <img src="images/<%= book.image %>" alt="do-re-mon" class="img-thumbnail product-img">
             </td>
             <td><%= book.publisherName %></td>
             <td><%= book.categoryName %></td>
