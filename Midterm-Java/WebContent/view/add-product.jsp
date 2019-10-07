@@ -171,7 +171,7 @@
         </div>
         <div class="form-group">
           <label>Hình ảnh</label>
-          <input class="form-control" type="file" name="photo" />
+          <input class="form-control" type="file" name="photo" id="imgInp"/>
           <img id="blah" class="image-thumbnail mt-2" />
         </div>
         

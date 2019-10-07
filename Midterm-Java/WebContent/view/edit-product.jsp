@@ -38,23 +38,16 @@
     </div>
 
     <ul class="list-unstyled components">
+      
       <li>
-        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-book"></i> Sản Phẩm</a>
-        <ul class="collapse list-unstyled" id="homeSubmenu">
-          <li>
-            <a href="dashboard.html">Sản Phẩm 1</a>
-          </li>
-          <li>
-            <a href="#">Sản Phẩm 2</a>
-          </li>
-        </ul>
+        <a href="${pageContext.request.contextPath}/Dashboard"><i class="fas fa-book"></i> Sản Phẩm</a>
       </li>
 
       <li>
-        <a href="#"><i class="fa fa-fw fa-database"></i> Danh mục</a>
+        <a href="${pageContext.request.contextPath}/Category"><i class="fa fa-fw fa-database"></i> Danh mục</a>
       </li>
       <li>
-        <a href="#"><i class="fa fa-fw fa-user"></i> Nhà sản xuất</a>
+        <a href="${pageContext.request.contextPath}/Publisher"><i class="fa fa-fw fa-user"></i> Nhà sản xuất</a>
       </li>
     </ul>
   </div>
@@ -125,7 +118,7 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
            <li class="breadcrumb-item active">
-           <h2>Thêm sản phẩm</h2>
+           <h2>Chi tiết sản phẩm</h2>
           </li>
         </ol>
       </nav>

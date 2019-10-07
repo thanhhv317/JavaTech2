@@ -38,6 +38,7 @@ public class Home extends HttpServlet {
 					"join publishers p on b.PublisherID= p.PublisherID " + 
 					"join users u on b.CreateBy=u.UserID";
 			String sql2="Select * from categories";
+			
 			ArrayList<BookModel> arrBook = new ArrayList<BookModel>();
 			ArrayList<CategoryModel> arrCate=new ArrayList<CategoryModel>();
 			ResultSet rs = conn.getData(sql1);
@@ -59,7 +60,6 @@ public class Home extends HttpServlet {
 							book.createBy=rs.getString(11);
 							book.status=rs.getBoolean(12);
 							arrBook.add(book);
-							
 						}
 						
 						while(rs2.next()) {
@@ -76,7 +76,7 @@ public class Home extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
+			req.setAttribute("sql", sql1);	
 			req.setAttribute("data", arrBook);
 			req.setAttribute("category", arrCate);
 			req.getRequestDispatcher("view/dashboard.jsp").forward(req, resp);

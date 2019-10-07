@@ -45,15 +45,17 @@ public class AddBook extends HttpServlet{
 		resp.setContentType("text/html;charset=UTF-8");
 		req.setCharacterEncoding("utf-8");
 		ConnectDB conn = new ConnectDB();
-		String sql = "Select CategoryID, CategoryName from categories";
+		String sql = "Select * from categories";
 		ResultSet rsCate = conn.getData(sql);
 		ArrayList<CategoryModel> arrCate =  new ArrayList<CategoryModel>();
 		try {
 			while(rsCate.next()) {
-				CategoryModel cateMod = new CategoryModel();
-				cateMod.categoryID = Integer.parseInt(rsCate.getString(1));
-				cateMod.name = rsCate.getString(2);
-				arrCate.add(cateMod);
+				CategoryModel cate=new CategoryModel();
+				cate.categoryID=rsCate.getInt(1);
+				cate.name=rsCate.getString(2);
+				cate.quantity=rsCate.getInt(3);
+				cate.status=rsCate.getBoolean(4);
+				arrCate.add(cate);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
