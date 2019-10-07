@@ -27,7 +27,7 @@ public class EditPublisher extends HttpServlet {
 		resp.setContentType("text/html;charset=UTF-8");
 		req.setCharacterEncoding("utf-8");
 		String id = req.getParameter("pubID");
-		// từ từ bình tĩnh
+		// tá»« tá»« bÃ¬nh tÄ©nh
 		String sql=String.format("Select * from publishers where PublisherID=%s", id);
 		ArrayList<String> arr = new ArrayList<String>();
 		ResultSet rs = conn.getData(sql);

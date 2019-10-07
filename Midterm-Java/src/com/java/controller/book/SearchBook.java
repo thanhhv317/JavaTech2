@@ -70,7 +70,7 @@ public class SearchBook extends HttpServlet {
 					"            <th scope=\"row\">%d</th>\r\n" + 
 					"            <td><a class=\"view-product\" data-toggle=\"modal\" data-target=\".bd-example-modal-xl\">%s</a></td>\r\n" + 
 					"            <td>\r\n"+
-					"              <img src=\"%s\" alt=\"do-re-mon\" class=\"img-thumbnail product-img\">\r\n" + 
+					"              <img src=\"images/%s\" alt=\"do-re-mon\" class=\"img-thumbnail product-img\">\r\n" + 
 					"            </td>\r\n" + 
 					"            <td>%s</td>\r\n" + 
 					"            <td>%s</td>\r\n" + 

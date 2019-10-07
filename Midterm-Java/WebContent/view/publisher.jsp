@@ -36,23 +36,15 @@
     </div>
 
     <ul class="list-unstyled components">
-      <li>
-        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-book"></i> Sản Phẩm</a>
-        <ul class="collapse list-unstyled" id="homeSubmenu">
-          <li>
-            <a href="#">Sản Phẩm 1</a>
-          </li>
-          <li>
-            <a href="#">Sản Phẩm 2</a>
-          </li>
-        </ul>
+       <li>
+        <a href="${pageContext.request.contextPath}/Dashboard"><i class="fas fa-book"></i> Sản Phẩm</a>
       </li>
 
       <li>
-        <a href="#"><i class="fa fa-fw fa-database"></i> Danh mục</a>
+        <a href="${pageContext.request.contextPath}/Category"><i class="fa fa-fw fa-database"></i> Danh mục</a>
       </li>
       <li>
-        <a href="#"><i class="fa fa-fw fa-user"></i> Nhà sản xuất</a>
+        <a href="${pageContext.request.contextPath}/Publisher"><i class="fa fa-fw fa-user"></i> Nhà sản xuất</a>
       </li>
     </ul>
   </div>
@@ -76,18 +68,18 @@
             <div class="btn-group dropleft">
               <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <% 
-	                if(session.getAttribute("name") != null){
-	                	out.print(session.getAttribute("name"));
-	                }
+                if(session.getAttribute("name") != null){
+                	
+                	out.print(session.getAttribute("name"));
+                }
                 %>
               </button>
               <div class="dropdown-menu">
                 <div class="text-center">
-                  <img src="https://via.placeholder.com/150x150" class="rounded-circle" alt="nguoi-dung">
+                  <img src="images/login.png" width="50px" height="50px" class="rounded-circle" alt="nguoi-dung">
                 </div>
                 <div class="btn-group mt-2 m-1 d-flex justify-content-center" role="group">
-                  <button class="btn btn-success" title="log-out"><i class="fas fa-sign-out-alt"></i></button>
-                  <button class="btn btn-primary" title="information"><i class="fas fa-address-card"></i></button>
+                  <a href="${pageContext.request.contextPath}/Login" class="btn btn-success" title="log-out"><i class="fas fa-sign-out-alt"></i></a>
                 </div>
               </div>
             </div>
@@ -114,7 +106,7 @@
           <li class="breadcrumb-item active">
             <div class="btn-group" role="group">
               <a href="${pageContext.request.contextPath}/view/add-publisher.jsp" class="btn btn-outline-success"><i class="fas fa-plus"></i> Thêm mới</a>
-              <button type="button" class="btn btn-outline-primary">Thống kê</button>
+              
             </div>
           </li>
         </ol>
@@ -178,27 +170,6 @@
         </tbody>
       </table>
 
-    <!-- pagination -->
-    <div class="container d-flex justify-content-center">
-      <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      </div>
-<!-- end pagination -->
 
     </div>
   </div>

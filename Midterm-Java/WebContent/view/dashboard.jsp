@@ -78,11 +78,10 @@
               </button>
               <div class="dropdown-menu">
                 <div class="text-center">
-                  <img src="https://via.placeholder.com/150x150" class="rounded-circle" alt="nguoi-dung">
+                  <img src="images/login.png" width="50px" height="50px" class="rounded-circle" alt="nguoi-dung">
                 </div>
                 <div class="btn-group mt-2 m-1 d-flex justify-content-center" role="group">
-                  <button class="btn btn-success" title="log-out"><i class="fas fa-sign-out-alt"></i></button>
-                  <button class="btn btn-primary" title="information"><i class="fas fa-address-card"></i></button>
+                  <a href="${pageContext.request.contextPath}/Login" class="btn btn-success" title="log-out"><i class="fas fa-sign-out-alt"></i></a>
                 </div>
               </div>
             </div>
@@ -141,7 +140,7 @@
           <li class="breadcrumb-item active">
             <div class="btn-group" role="group">
               <a href="${pageContext.request.contextPath}/AddBook" class="btn btn-outline-success"><i class="fas fa-plus"></i> Thêm mới</a>
-              <button type="button" class="btn btn-outline-primary">Thống kê</button>
+
             </div>
           </li>
         </ol>

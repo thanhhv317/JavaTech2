@@ -37,23 +37,15 @@
     </div>
 
     <ul class="list-unstyled components">
-      <li>
-        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-book"></i> Sản Phẩm</a>
-        <ul class="collapse list-unstyled" id="homeSubmenu">
-          <li>
-            <a href="dashboard.html">Sản Phẩm 1</a>
-          </li>
-          <li>
-            <a href="#">Sản Phẩm 2</a>
-          </li>
-        </ul>
+       <li>
+        <a href="${pageContext.request.contextPath}/Dashboard"><i class="fas fa-book"></i> Sản Phẩm</a>
       </li>
 
       <li>
-        <a href="#"><i class="fa fa-fw fa-database"></i> Danh mục</a>
+        <a href="${pageContext.request.contextPath}/Category"><i class="fa fa-fw fa-database"></i> Danh mục</a>
       </li>
       <li>
-        <a href="#"><i class="fa fa-fw fa-user"></i> Nhà sản xuất</a>
+        <a href="${pageContext.request.contextPath}/Publisher"><i class="fa fa-fw fa-user"></i> Nhà sản xuất</a>
       </li>
     </ul>
   </div>
@@ -87,11 +79,10 @@
               </button>
               <div class="dropdown-menu">
                 <div class="text-center">
-                  <img src="https://via.placeholder.com/150x150" class="rounded-circle" alt="nguoi-dung">
+                  <img src="images/login.png" width="50px" height="50px" class="rounded-circle" alt="nguoi-dung">
                 </div>
                 <div class="btn-group mt-2 m-1 d-flex justify-content-center" role="group">
-                  <button class="btn btn-success" title="log-out"><i class="fas fa-sign-out-alt"></i></button>
-                  <button class="btn btn-primary" title="information"><i class="fas fa-address-card"></i></button>
+                  <a href="${pageContext.request.contextPath}/Login" class="btn btn-success" title="log-out"><i class="fas fa-sign-out-alt"></i></a>
                 </div>
               </div>
             </div>
