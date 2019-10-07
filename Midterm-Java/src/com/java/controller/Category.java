@@ -100,7 +100,6 @@ public class Category extends HttpServlet {
 				String sql = String.format("Delete from categories where CategoryID=%s", id);
 				boolean result = conn.updateData(sql);
 				PrintWriter out = resp.getWriter();
-		
 				if (result) {
 					out.print("success");
 				}
@@ -147,6 +146,21 @@ public class Category extends HttpServlet {
 						e.printStackTrace();
 					}
 				resp.getWriter().println(searchResult(arrCate));
+				break;
+			}
+			case "add":{
+				String name=req.getParameter("categoryName");
+				String quatity=req.getParameter("quantity");
+				String status=req.getParameter("status");
+				String sql =String.format("Insert into categories values (null, '%s',%s, %s)", name, quatity, status);
+				boolean result = conn.updateData(sql);
+				PrintWriter out = resp.getWriter();
+				if (result) {
+					out.print("success");
+				}
+				else {
+					out.print("fail");
+				}
 				break;
 			}
 		}

@@ -153,7 +153,7 @@
  		 </div>
  		 <div class="custom-control custom-switch">
 			  <input type="checkbox" class="custom-control-input" id="categoryStatus">
-			  <label class="custom-control-label" for="categoryStatus">Trạng thái hiện thị</label>
+			  <label class="custom-control-label" for="categoryStatus">Trạng thái hiển thị</label>
 		</div>
       </div>
       <div class="modal-footer">
@@ -280,7 +280,6 @@
 	});
 	
 	$(".delete").click(function(){
-		alert(this.id);
 		$.ajax({
 			  url: "${pageContext.request.contextPath}/Category", 
 			  type: "POST",
@@ -328,7 +327,6 @@
 					  location.reload();
 				  }
 				  else{
-					
 				  	alert("Xóa thất bại. Vui lòng thử lại");
 				  }
 			  }
