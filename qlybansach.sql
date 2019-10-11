@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2019 at 05:37 PM
+-- Generation Time: Oct 04, 2019 at 07:16 AM
 -- Server version: 10.1.40-MariaDB
 -- PHP Version: 7.1.29
 
@@ -33,11 +33,12 @@ CREATE TABLE `books` (
   `CategoryID` int(11) NOT NULL,
   `PublisherID` int(11) NOT NULL,
   `BookName` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `Author` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `Price` int(11) NOT NULL,
-  `Image` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `Description` text COLLATE utf8_unicode_ci NOT NULL,
+  `Image` varchar(100) NOT NULL,
+  `Description` text NOT NULL,
   `Quantity` int(11) NOT NULL,
-  `CreateDate` int(11) NOT NULL,
+  `CreateDate` datetime NOT NULL,
   `CreateBy` int(11) NOT NULL,
   `Status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -52,8 +53,15 @@ CREATE TABLE `categories` (
   `CategoryID` int(11) NOT NULL,
   `CategoryName` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `Quantity` int(11) NOT NULL,
-  `Status` tinyint(1) NOT NULL
+  `Status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`CategoryID`, `CategoryName`, `Quantity`, `Status`) VALUES
+(1, 'Tiểu thuyết', 200, 1);
 
 -- --------------------------------------------------------
 
@@ -86,6 +94,16 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`UserID`, `Name`, `UserName`, `Password`, `Address`, `Phone`, `Email`) VALUES
+(2, 'Minh', 'minhlc', 'minhlc', '93', '0938964143', '.ll'),
+(3, 'Admin', 'admin1', '21232f297a57a5a743894a0e4a801fc3', '123', '123', '123'),
+(4, 'Thành', 'thanhhv', '36fc0417a7a5beab37e3e490c4543d55', '100', '123', 'thanhhv@gmail.com'),
+(4, 'Kỳ', 'kydq', '579cbb1fdf2da496711e71622c932112', '100', '123', 'kydq@gmail.com');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -94,9 +112,9 @@ CREATE TABLE `users` (
 --
 ALTER TABLE `books`
   ADD PRIMARY KEY (`BookID`),
-  ADD KEY `fk_categoryID_Books` (`CategoryID`),
-  ADD KEY `PublisherID` (`PublisherID`),
-  ADD KEY `CreateBy` (`CreateBy`);
+  ADD KEY `fk_CategoryID` (`CategoryID`),
+  ADD KEY `fk_PublisherID` (`PublisherID`),
+  ADD KEY `fk_CreateBy` (`CreateBy`);
 
 --
 -- Indexes for table `categories`
@@ -121,6 +139,18 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `books`
+--
+ALTER TABLE `books`
+  MODIFY `BookID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `CategoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `publishers`
 --
 ALTER TABLE `publishers`
@@ -130,7 +160,7 @@ ALTER TABLE `publishers`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -140,9 +170,9 @@ ALTER TABLE `users`
 -- Constraints for table `books`
 --
 ALTER TABLE `books`
-  ADD CONSTRAINT `books_ibfk_1` FOREIGN KEY (`PublisherID`) REFERENCES `publishers` (`PublisherID`),
-  ADD CONSTRAINT `books_ibfk_2` FOREIGN KEY (`CreateBy`) REFERENCES `users` (`UserID`),
-  ADD CONSTRAINT `fk_categoryID_Books` FOREIGN KEY (`CategoryID`) REFERENCES `categories` (`CategoryID`);
+  ADD CONSTRAINT `fk_CategoryID` FOREIGN KEY (`CategoryID`) REFERENCES `categories` (`CategoryID`),
+  ADD CONSTRAINT `fk_CreateBy` FOREIGN KEY (`CreateBy`) REFERENCES `users` (`UserID`),
+  ADD CONSTRAINT `fk_PublisherID` FOREIGN KEY (`PublisherID`) REFERENCES `publishers` (`PublisherID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
