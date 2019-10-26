@@ -1,4 +1,6 @@
 <%@ include file="includes/header.jsp" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+pageEncoding="utf-8"%>
 <div class="banner-area banner-res-large ptb-35">
 	<div class="container">
 		<div class="row">
@@ -60,7 +62,7 @@
                         <div class="slider-content slider-animated-1 text-center">
                             <h1>Huge Sale</h1>
                             <h2>koparion</h2>
-                            <h3>Now starting at £99.00</h3>
+                            <h3>Now starting at Â£99.00</h3>
                             <a href="#">Shop now</a>
                         </div>
                     </div>
@@ -86,18 +88,14 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="section-title text-center mb-50">
-					<h2>Top interesting</h2>
-					<p>Browse the collection of our best selling and top interresting products. <br /> ll definitely find what you are looking for..</p>
+					<h2>Top Thịnh Hành</h2>
+					<p>Những sản phẩm giá tốt nhất. <br /> ----------------------------- </p>
 				</div>
 			</div>
 			<div class="col-lg-12">
 				<!-- tab-menu-start -->
 				<div class="tab-menu mb-40 text-center">
-					<ul>
-						<li class="active"><a href="#Audiobooks" data-toggle="tab">New Arrival	</a></li>
-						<li><a href="#books"  data-toggle="tab">OnSale</a></li>
-						<li><a href="#bussiness" data-toggle="tab">Featured Products</a></li>
-					</ul>
+					
 				</div>
 				<!-- tab-menu-end -->
 			</div>
@@ -1138,7 +1136,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="section-title bt text-center pt-100 mb-30 section-title-res">
-					<h2>Featured Books</h2>
+					<h2>Sách mới nhất</h2>
 				</div>
 			</div>
 		</div>
