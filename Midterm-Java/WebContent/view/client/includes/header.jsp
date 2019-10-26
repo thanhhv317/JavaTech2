@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 pageEncoding="utf-8"%>
+
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.java.model.CategoryModel"%>
 <!doctype html>
 <html class="no-js" lang="en">
 <head>
@@ -86,7 +89,7 @@ pageEncoding="utf-8"%>
 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 				<div class="my-cart">
 					<ul>
-						<li><a href="#"><i class="fa fa-shopping-cart"></i>My Cart</a>
+						<li><a href="#"><i class="fa fa-shopping-cart"></i>Giỏ Hàng Của Tui</a>
 							<span>1</span>
 							<div class="mini-cart-sub">
 								<div class="cart-product">
@@ -107,8 +110,8 @@ pageEncoding="utf-8"%>
 									<h5>Total <span>12.00</span></h5>
 								</div>
 								<div class="cart-bottom">
-									<a class="view-cart" href="cart.html">view cart</a>
-									<a href="checkout.html">Check out</a>
+									<a class="view-cart" href="Cart">Xem giỏ hàng</a>
+									<a href="Checkout">Thanh Toán</a>
 								</div>
 							</div>
 						</li>
@@ -127,20 +130,26 @@ pageEncoding="utf-8"%>
 				<div class="menu-area">
 					<nav>
 						<ul>
-							<li class="active"><a href="index.html">Home</a></li>
-							<li><a href="">Book<i class="fa fa-angle-down"></i></a>
+							<li class="active"><a href="${pageContext.request.contextPath}">Trang Chủ</a></li>
+							<li><a href="Product">Sản Phẩm<i class="fa fa-angle-down"></i></a>
 								<div class="sub-menu sub-menu-2">
 									<ul>
-										<li><a href="#">thanh dai ca</a></li>	
-										<li><a href="#">Son cung la dai ca</a></li>
+										<%ArrayList<CategoryModel> arrCate =(ArrayList<CategoryModel>)request.getAttribute("category");
+										 	for(int i=0;i<arrCate.size();++i){
+										 		CategoryModel cate= arrCate.get(i);
+											%>
+												<li><a href="Product?category=<%= cate.categoryID %>"> <%= cate.name %></a></li>	
+											
+					        			<%} %>
+										
 									</ul>
 								</div>
 							</li>
-							<li><a href="index.html">Cart</a></li>
-							<li><a href="index.html">Contact</a></li>
+							<li><a href="Cart">Giỏ Hàng</a></li>
+							<li><a href="Contact">Liên Hệ</a></li>
 							<!-- Neu nhu la admin thi se xuat hien cai tab quan ly nay bam vao thi se nhay qua
 							trang dashboard -->
-							<li><a href="index.html">Manage</a></li>
+							<li><a href="Dashboard">Quản Lý</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -157,16 +166,15 @@ pageEncoding="utf-8"%>
 				<div class="mobile-menu">
 					<nav id="mobile-menu-active">
 						<ul id="nav">
-							<li><a href="index.html">Home</a>
+							<li><a href="${pageContext.request.contextPath}">Trang Chủ</a>
 							</li>
-							<li><a href="product-details.html">Book</a>
-								<ul>
-									<li><a href="shop.html">Tops & Tees</a></li>
-									<li><a href="shop.html">Polo Short Sleeve</a></li>
-									<li><a href="shop.html">Graphic T-Shirts</a></li>
-									<li><a href="shop.html">Jackets & Coats</a></li>
-								</ul>
+							<li><a href="product-details.asp">Sản Phẩm</a>
 							</li>
+							<li><a href="Cart">Giỏ Hàng</a></li>
+							<li><a href="Contact">Liên Hệ</a></li>
+							<!-- Neu nhu la admin thi se xuat hien cai tab quan ly nay bam vao thi se nhay qua
+							trang dashboard -->
+							<li><a href="Dashboard">Quản Lý</a></li>
 						</ul>
 					</nav>
 				</div>
