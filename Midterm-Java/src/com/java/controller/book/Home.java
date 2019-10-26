@@ -31,6 +31,9 @@ public class Home extends HttpServlet {
 		if (session.getAttribute("name") == null) {
 			resp.sendRedirect(req.getContextPath()+"/Login");
 		}
+		else if(Integer.parseInt(session.getAttribute("level").toString())==1){
+			resp.sendRedirect(req.getContextPath());
+        }
 		else {
 			String sql1="select b.BookID, c.CategoryName, p.PublisherName, b.BookName, b.Author, " + 
 					"b.Price, b.Image, b.Description, b.Quantity, b.CreateDate, u.Name, b.Status from books b " + 

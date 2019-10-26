@@ -73,6 +73,7 @@
                 if(session.getAttribute("name") != null){
                 	
                 	out.print(session.getAttribute("name"));
+                	
                 }
                 %>
               </button>
