@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.java.common.ProductCategory;
+import com.java.model.CategoryModel;
 import com.java.model.ConnectDB;
 import com.java.model.client.BookModel;
 
@@ -26,6 +28,10 @@ public class ShowProduct extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String category = req.getParameter("category");
+		ArrayList<CategoryModel> array = new ArrayList<CategoryModel>();
+		ProductCategory p = new ProductCategory();
+		array = p.GetListCate();
+		req.setAttribute("category", array);
 		String sql="select b.BookID, c.CategoryName, p.PublisherName, b.BookName, b.Author, b.Price, b.Image, b.Description from books b "
 				+ "join categories c on b.CategoryID=c.CategoryID "
 				+ "join publishers p on b.PublisherID= p.PublisherID where b.CategoryID="+category+" and b.Status=1 and b.Quantity>0";
