@@ -12,7 +12,7 @@ public class ConnectDB {
 	public ConnectDB()  {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/qlybansach","root","Kydapzai1997!");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/qlybansach","root","");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

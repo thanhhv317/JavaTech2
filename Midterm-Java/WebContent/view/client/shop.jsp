@@ -585,15 +585,39 @@
           <div class="list-page-2">
             <p>Items 1-9 of 11</p>
           </div>
+         
           <div class="page-number">
             <ul>
-              <li><a href="#" class="active">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#" class="angle"><i class="fa fa-angle-right"></i></a></li>
+             <%
+             	String cate=(String)request.getAttribute("cate");
+             	String url=request.getContextPath()+"/Product?";
+             	if (cate!=null){
+             		url+="category="+cate+"&";
+             	}
+          		int total=(int)request.getAttribute("total");
+          		int take=12;
+          		int numOfPage=total/take;
+          		if (numOfPage==0){
+          			url+="page=1";
+          			out.print("<li><a href="+url+" class='active'>1</a></li>");
+          		}
+          		else{
+          			if (total%take!=0) numOfPage+=1;
+          			int p=(int)request.getAttribute("selectedPage");
+          			for (int i=1;i<=numOfPage;++i){
+          				String link=url+"page="+i;
+          				if (p==i){
+          					out.println("<li><a href="+link+" class='active'>"+i+"</a></li>");
+          				}
+          				else{
+          					out.println("<li><a href="+link+">"+i+"</a></li>");
+          				}
+          			}
+          		}
+          	%>
             </ul>
           </div>
+          
         </div>
         <!-- pagination-area-end -->
       </div>
