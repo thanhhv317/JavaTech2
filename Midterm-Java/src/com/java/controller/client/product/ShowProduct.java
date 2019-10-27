@@ -26,17 +26,47 @@ public class ShowProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// get category
 		String category = req.getParameter("category");
 		ArrayList<CategoryModel> array = new ArrayList<CategoryModel>();
 		ProductCategory p = new ProductCategory();
 		array = p.GetListCate();
 		req.setAttribute("category", array);
-		String sql="select b.BookID, c.CategoryName, p.PublisherName, b.BookName, b.Author, b.Price, b.Image, b.Description from books b "
+		
+		//Handle get data
+		String sql="";
+		String sqlCount="";
+		int take=12;
+		int page=1; //Default is page=1
+		
+		try {
+			page=Integer.parseInt(req.getParameter("page"));
+		}catch(Exception e) {
+			
+		}
+		
+		int fromPosition=(page-1)*take;
+		String limit = "limit "+fromPosition+", "+take; //example limit 0,16 
+		if(category==null) {
+			sql="select b.BookID, c.CategoryName, p.PublisherName, b.BookName, b.Author, b.Price, b.Image, b.Description from books b "
+					+ "join categories c on b.CategoryID=c.CategoryID "
+					+ "join publishers p on b.PublisherID= p.PublisherID where b.Status=1 and b.Quantity>0 "
+					+ "order by b.BookID DESC "+limit;
+			sqlCount="Select count(*) from books";
+		}
+		else {
+			sql="select b.BookID, c.CategoryName, p.PublisherName, b.BookName, b.Author, b.Price, b.Image, b.Description from books b "
 				+ "join categories c on b.CategoryID=c.CategoryID "
-				+ "join publishers p on b.PublisherID= p.PublisherID where b.CategoryID="+category+" and b.Status=1 and b.Quantity>0";
+				+ "join publishers p on b.PublisherID= p.PublisherID where b.CategoryID="+category+" and b.Status=1 and b.Quantity>0 "
+				+ "order by b.BookID DESC "+limit;
+			sqlCount="Select count(*) from books where CategoryID="+category;
+			req.setAttribute("cate", category);
+		}
+		
 		ArrayList<BookModel> arrBook = new ArrayList<BookModel>();
 		ResultSet rs = conn.getData(sql);
+		ResultSet rsCount=conn.getData(sqlCount);
+		int totalBook=0;
 		try {
 			while(rs.next()){
 				BookModel book = new BookModel();
@@ -50,11 +80,16 @@ public class ShowProduct extends HttpServlet {
 				book.description=rs.getString(8);
 				arrBook.add(book);
 			}
+			while(rsCount.next()) {
+				totalBook=rsCount.getInt(1);
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		req.setAttribute("data", arrBook);
+		req.setAttribute("total", totalBook);
+		req.setAttribute("selectedPage", page);
 		req.getRequestDispatcher("view/client/shop.jsp").forward(req, resp);
 	}
 }
