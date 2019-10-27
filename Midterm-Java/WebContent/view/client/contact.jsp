@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+pageEncoding="utf-8"%>
+
 	<%@ include file="includes/header.jsp" %>
 <div class="breadcrumbs-area mb-70">
 	<div class="container">
@@ -5,8 +8,8 @@
 			<div class="col-lg-12">
 				<div class="breadcrumbs-menu">
 					<ul>
-						<li><a href="#">Home</a></li>
-						<li><a href="#" class="active">contact</a></li>
+						<li><a href="#">Trang chủ</a></li>
+						<li><a href="#" class="active">Liên hệ</a></li>
 					</ul>
 				</div>
 			</div>
@@ -32,7 +35,7 @@
 		<div class="row">
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<div class="contact-info">
-					<h3>Contact info</h3>
+					<h3>Thông tin liên hệ</h3>
 					<ul>
 						<li>
 							<i class="fa fa-map-marker"></i>
@@ -54,28 +57,28 @@
 			</div>
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<div class="contact-form">
-					<h3><i class="fa fa-envelope-o"></i>Leave a Feedback</h3>
-                    <form id="contact-form" action="mail.php" method="post">
+					<h3><i class="fa fa-envelope-o"></i>Gửi 1 phản hồi</h3>
+                    <form id="contact-form" action="#" method="post">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="single-form-3">
-                                    <input name="name" type="text" placeholder="Name">
+                                    <input name="name" type="text" placeholder="Name" required>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="single-form-3">
-                                    <input name="email" type="email" placeholder="Email">
+                                    <input name="email" type="email" placeholder="Email" required>
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="single-form-3">
-                                    <input name="subject" type="text" placeholder="Subject">
+                                    <input name="subject" type="text" placeholder="Subject" required>
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                  <div class="single-form-3">
-                                    <textarea name="message" placeholder="Message"></textarea>
-                                    <button class="submit" type="submit">SEND FEEDBACK</button>
+                                    <textarea name="message" placeholder="Message" required></textarea>
+                                    <button class="submit" type="button" id="sendFeedback">SEND FEEDBACK</button>
                                 </div>
                             </div>
                         </div>
@@ -88,3 +91,58 @@
 </div>
 
 	<%@ include file="includes/footer.jsp" %>
+<script>
+	$("#sendFeedback").click(function(){
+		var name    = $("input[name='name']").val();
+		var email   = $("input[name='email']").val();
+		var subject = $("input[name='subject']").val();
+		var message = $("textarea[name='message']").val();
+		
+		if (!checkNull(name, email, subject, message)) {
+			$.ajax({
+				url: "Contact",
+				type: "POST",
+				data: {
+					name : name,
+					email: email,
+					subject: subject,
+					message: message
+				},
+				success: function(data){
+					Swal.fire(
+					  'Thành công!',
+					  'Phản hồi của bạn đã được gửi thành công!',
+					  'success'
+					);
+					$("input[name='name']").val("");
+					$("input[name='email']").val("");
+					$("input[name='subject']").val("");
+					$("textarea[name='message']").val("");
+				},
+				error: function(msg){
+					Swal.fire({
+					  title: 'Đã xảy ra lỗi vui lòng thử lại sau',
+					  animation: false,
+					  customClass: {
+					    popup: 'animated tada'
+					  }
+					});
+				}
+			})
+		} else {
+			Swal.fire({
+			  title: 'Vui lòng nhập đầy đủ thông tin',
+			  animation: false,
+			  customClass: {
+			    popup: 'animated tada'
+			  }
+			})
+		}
+	});
+	
+	function checkNull(a, b, c, d){
+		if (!a || !b || !c || !d) return true;
+		return false;
+	}
+	
+</script>
