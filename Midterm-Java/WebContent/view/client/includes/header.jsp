@@ -61,7 +61,8 @@ pageEncoding="utf-8"%>
 					<ul>
 						<li><a href="register.html">My Account</a></li>
 						<li><a href="checkout.html">Checkout</a></li>
-						<li><a href="/Login">Sign in</a></li>
+						<li><a href="
+						Login">Sign in</a></li>
 					</ul>
 				</div>
 			</div>
@@ -89,25 +90,11 @@ pageEncoding="utf-8"%>
 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 				<div class="my-cart">
 					<ul>
-						<li><a href="#"><i class="fa fa-shopping-cart"></i>Giỏ Hàng Của Tui</a>
-							<span>1</span>
+						<li><a href="Cart"><i class="fa fa-shopping-cart"></i>Giỏ Hàng Của Tui</a>
+							<span class="quantity-product">0</span>
 							<div class="mini-cart-sub">
-								<div class="cart-product">
-									<div class="single-cart">
-										<div class="cart-img">
-											<a href="#"><img src="${pageContext.request.contextPath}/root/img/product/3.jpg" alt="book" /></a>
-										</div>
-										<div class="cart-info">
-											<h5><a href="#">Chaz Kangeroo Hoodie</a></h5>
-											<p>1 x £52.00</p>
-										</div>
-										<div class="cart-icon">
-                                            <a href="#"><i class="fa fa-remove"></i></a>
-                                        </div>
-									</div>
-								</div>
 								<div class="cart-totals">
-									<h5>Total <span>12.00</span></h5>
+									<h5>Tổng cộng <span class="product-total-price">0</span></h5>
 								</div>
 								<div class="cart-bottom">
 									<a class="view-cart" href="Cart">Xem giỏ hàng</a>
