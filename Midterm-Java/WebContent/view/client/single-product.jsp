@@ -19,9 +19,9 @@ pageEncoding="utf-8"%>
                 <span><%= book.price %> VND</span>
             </div>
             <p><%= book.description %></p>	
-            <form action="#">
-                <input type="number" value="1" />
-                <button>Add to cart</button>
+            <form>
+                <input type="number" class="add-quantity" value="1" />
+                <button type="button" onclick="addToCart(<%= book.bookID %>, '<%= book.bookName %>', <%= book.price %>, '${pageContext.request.contextPath}/images/<%= book.image %>', $('.add-quantity').val());">Add to cart</button>
             </form>
         </div>
     </div>

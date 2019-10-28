@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+pageEncoding="utf-8"%>
 <%@ include file="includes/header.jsp" %>
 	
 	<div class="breadcrumbs-area mb-70">
@@ -33,7 +35,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<form action="#">
+					<form>
 						<div class="table-content table-responsive">
 							<table>
 								<thead>
@@ -46,16 +48,9 @@
 										<th class="product-remove">Remove</th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr>
-										<td class="product-thumbnail"><a href="#"><img src="${pageContext.request.contextPath}/root/img/cart/1.jpg" alt="man" /></a></td>
-										<td class="product-name"><a href="#">Vestibulum suscipit</a></td>
-										<td class="product-price"><span class="amount">�165.00</span></td>
-										<td class="product-quantity"><input type="number" value="1"></td>
-										<td class="product-subtotal">�165.00</td>
-										<td class="product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-									</tr>
-									</tbody>
+								<tbody class="append-product">
+									
+								</tbody>
 							</table>
 						</div>
 					</form>
@@ -65,66 +60,56 @@
                 <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
                     <div class="buttons-cart mb-30">
                         <ul>
-                            <li><a href="#">Update Cart</a></li>
-                            <li><a href="#">Continue Shopping</a></li>
+                            <li><a style="cursor:pointer;" class="btn-clear-cart">Xóa giỏ hàng</a></li>
+                            <li><a href="Product">Tiếp tục mua sắm</a></li>
                         </ul>
                     </div>
-                    <div class="coupon">
-                        <h3>Coupon</h3>
-                        <p>Enter your coupon code if you have one.</p>
-                        <form action="#">
-                            <input type="text" placeholder="Coupon code">
-                            <a href="#">Apply Coupon</a>
-                        </form>
-                    </div>
+                   
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="cart_totals">
-                        <h2>Cart Totals</h2>
+                        <h2>Tổng Chi Phí</h2>
                         <table>
                             <tbody>
                                 <tr class="cart-subtotal">
-                                    <th>Subtotal</th>
+                                    <th>Số lượng</th>
                                     <td>
-                                        <span class="amount">�215.00</span>
+                                        <span class="amount total-quantity-all-product">0</span>
                                     </td>
                                 </tr>
+                                 
                                 <tr class="shipping">
                                     <th>Shipping</th>
                                     <td>
                                         <ul id="shipping_method">
+                                            
                                             <li>
-                                                <input type="radio">
-                                                <label>
-                                                    Flat Rate:
-                                                    <span class="amount">�7.00</span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <input type="radio">
+                                                <input type="radio" checked>
                                                 <label> Free Shipping </label>
                                             </li>
                                         </ul>
-                                        <a href="#">Calculate Shipping</a>
+                                        <a href="">Tổng cộng</a>
                                     </td>
                                 </tr>
+                               
                                 <tr class="order-total">
                                     <th>Total</th>
                                     <td>
                                         <strong>
-                                            <span class="amount">�215.00</span>
+                                            <span class="amount total-price-all-product">0 VND</span>
                                         </strong>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                         <div class="wc-proceed-to-checkout">
-                            <a href="#">Proceed to Checkout</a>
+                            <a href="Checkout">Tiến hành thanh toán</a>
                         </div>
                     </div>
                 </div>
             </div>
 		</div>
 	</div>
+	
 	<%@ include file="includes/footer.jsp" %>
 	

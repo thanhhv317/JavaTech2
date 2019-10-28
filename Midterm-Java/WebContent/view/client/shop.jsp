@@ -325,7 +325,7 @@
                                     </div>
                                     <div class="product-link">
                                         <div class="product-button">
-                                            <a href="#" title="Add to cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            <a title="Add to cart" style="cursor:pointer" onclick="addToCart(<%= book.bookID %>, '<%= book.bookName %>', <%= book.price %>, '${pageContext.request.contextPath}/images/<%= book.image %>', 1);" ><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                         </div>
                                         <div class="add-to-link">
                                             <ul>
@@ -423,7 +423,7 @@
                     </div>
                     <div class="product-link">
                       <div class="product-button">
-                        <a href="#" title="Add to cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                        <a href="#" class="addToCart" title="Add to cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                       </div>
                       <div class="add-to-link">
                                                 <ul>

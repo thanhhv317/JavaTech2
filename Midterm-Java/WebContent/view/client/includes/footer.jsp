@@ -146,5 +146,11 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <!-- sweet alert -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+        <!-- cart js -->
+        <script src="${pageContext.request.contextPath}/root/js/cart.js"></script>	
+        
+        <script src="${pageContext.request.contextPath}/root/js/viewCart.js"></script>
+        
+        <script src="${pageContext.request.contextPath}/root/js/checkout.js"></script>
     </body>
 </html>
