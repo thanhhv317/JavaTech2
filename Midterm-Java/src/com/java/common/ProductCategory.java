@@ -16,7 +16,7 @@ public class ProductCategory {
 	ConnectDB conn = new ConnectDB();
 
 	public ArrayList<CategoryModel> GetListCate(){
-		String sql = "Select CategoryID, CategoryName from categories";
+		String sql = "Select CategoryID, CategoryName from categories where Status=1";
 		ResultSet rs = conn.getData(sql);
 		ArrayList<CategoryModel> listCate = new ArrayList<CategoryModel>();
 		try {
