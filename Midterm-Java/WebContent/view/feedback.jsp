@@ -46,7 +46,7 @@
         <a href="${pageContext.request.contextPath}/Publisher"><i class="fa fa-fw fa-user"></i> Nhà sản xuất</a>
       </li>
        <li>
-        <a href="${pageContext.request.contextPath}/Feedback"><i class="fa fa-fw fa-user"></i> Phản hồi</a>
+        <a href="${pageContext.request.contextPath}/Feedback"><i class="fa fa-fw fa-comment-dots"></i> Phản hồi</a>
       </li>
     </ul>
   </div>

@@ -20,7 +20,7 @@ pageEncoding="utf-8"%>
             </div>
             <p><%= book.description %></p>	
             <form>
-                <input type="number" class="add-quantity" value="1" />
+                <input type="number" class="add-quantity" min="1" value="1" />
                 <button type="button" onclick="addToCart(<%= book.bookID %>, '<%= book.bookName %>', <%= book.price %>, '${pageContext.request.contextPath}/images/<%= book.image %>', Number($('.add-quantity').val()));">Add to cart</button>
             </form>
         </div>
