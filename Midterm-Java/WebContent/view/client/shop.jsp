@@ -100,7 +100,7 @@ pageEncoding="utf-8"%>
         <!-- tab-area-start -->
         <div class="tab-content">
           <div class="tab-pane active" id="th">
-              <div class="row">
+              <div class="">
               <% ArrayList<BookModel> arrBook =(ArrayList<BookModel>)request.getAttribute("data");
              for(int i=0;i<arrBook.size();++i){
                BookModel book = arrBook.get(i);
@@ -110,7 +110,7 @@ pageEncoding="utf-8"%>
                                 <div class="product-wrapper mb-40">
                                     <div class="product-img">
                                         <a href="#">
-                                            <img src="${pageContext.request.contextPath}/images/<%= book.image %>" width="100px" alt="book" class="primary" />
+                                            <img style="max-height:210px;" src="${pageContext.request.contextPath}/images/<%= book.image %>" width="100px" alt="book" class="primary" />
                                         </a>
                                         <div class="quick-view">
                                             <a class="action-view btnDetail" href="#" data-id="<%= book.bookID %>" data-target="#productModal" data-toggle="modal" title="Quick View">
@@ -124,7 +124,7 @@ pageEncoding="utf-8"%>
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="product-details text-center">
+                                    <div class="product-details text-center ">
                                         <div class="product-rating">
                                             <ul>
                                                 <li><a href="#"><i class="fa fa-star"></i></a></li>
@@ -134,7 +134,7 @@ pageEncoding="utf-8"%>
                                                 <li><a href="#"><i class="fa fa-star"></i></a></li>
                                             </ul>
                                         </div>
-                                        <h4><a href="#"><%= book.bookName %></a></h4>
+                                        <h4 style="height: 50px;"><a href="#"><%= book.bookName %></a></h4>
                                         <div class="product-price">
                                             <ul>
                                                 <li><%= book.price %> VND</li>
