@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+pageEncoding="utf-8"%>
 <%@ include file="includes/header.jsp" %>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.java.model.client.BookModel"%>
@@ -9,8 +11,8 @@
       <div class="col-lg-12">
         <div class="breadcrumbs-menu">
           <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#" class="active">shop</a></li>
+            <li><a href="#">Trang Chủ</a></li>
+            <li><a href="#" class="active">Sản Phẩm</a></li>
           </ul>
         </div>
       </div>
@@ -25,10 +27,10 @@
       <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
         <div class="shop-left">
           <div class="section-title-5 mb-30">
-            <h2>Shopping Options</h2>
+            <h2>Lựa chọn</h2>
           </div>
           <div class="left-title mb-20">
-            <h4>Category</h4>
+            <h4>Danh mục</h4>
           </div>
           <div class="left-menu mb-30">
             <ul>
@@ -38,43 +40,7 @@
               <li><a href="#">Jeans Pants<span>(6)</span></a></li>
             </ul>
           </div>
-          <div class="left-title mb-20">
-            <h4>Color</h4>
-          </div>
-          <div class="color-menu mb-30">
-            <ul class="color">
-              <li><a href="#"></a></li>
-              <li><a href="#" class="bg-2"></a></li>
-              <li><a href="#" class="bg-3"></a></li>
-              <li><a href="#" class="bg-4"></a></li>
-            </ul>
-          </div>
-          <div class="left-title mb-20">
-            <h4>Manufacturer</h4>
-          </div>
-          <div class="left-menu mb-30">
-            <ul>
-              <li><a href="#">Adidas<span>(4)</span></a></li>
-              <li><a href="#">Chanel<span>(7)</span></a></li>
-              <li><a href="#">DKNY <span>(3)</span></a></li>
-              <li><a href="#">Dolce<span>(3)</span></a></li>
-              <li><a href="#">Gabbana<span>(2)</span></a></li>
-              <li><a href="#">Nike<span>(3)</span></a></li>
-              <li><a href="#">Other <span>(1)</span></a></li>
-            </ul>
-          </div>
-          <div class="left-title mb-20">
-            <h4>Price</h4>
-          </div>
-          <div class="left-menu mb-30">
-            <ul>
-              <li><a href="#">$0.00-$9.99<span>(1)</span></a></li>
-              <li><a href="#">$30.00-$39.99<span>(11)</span></a></li>
-              <li><a href="#">$40.00-$49.99<span>(2)</span></a></li>
-              <li><a href="#">$50.00-$59.99<span>(3)</span></a></li>
-              <li><a href="#">$70.00-and above<span>(1)</span></a></li>
-            </ul>
-          </div>
+          
           <div class="left-title mb-20">
             <h4>Random</h4>
           </div>

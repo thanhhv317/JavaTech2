@@ -8,8 +8,8 @@ pageEncoding="utf-8"%>
 				<div class="col-lg-12">
 					<div class="breadcrumbs-menu">
 						<ul>
-							<li><a href="#">Home</a></li>
-							<li><a href="#" class="active">cart</a></li>
+							<li><a href="#">Trang Chủ</a></li>
+							<li><a href="#" class="active">Giỏ Hàng</a></li>
 						</ul>
 					</div>
 				</div>
