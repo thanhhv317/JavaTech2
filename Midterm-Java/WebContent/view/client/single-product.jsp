@@ -21,7 +21,7 @@ pageEncoding="utf-8"%>
             <p><%= book.description %></p>	
             <form>
                 <input type="number" class="add-quantity" value="1" />
-                <button type="button" onclick="addToCart(<%= book.bookID %>, '<%= book.bookName %>', <%= book.price %>, '${pageContext.request.contextPath}/images/<%= book.image %>', $('.add-quantity').val());">Add to cart</button>
+                <button type="button" onclick="addToCart(<%= book.bookID %>, '<%= book.bookName %>', <%= book.price %>, '${pageContext.request.contextPath}/images/<%= book.image %>', Number($('.add-quantity').val()));">Add to cart</button>
             </form>
         </div>
     </div>
