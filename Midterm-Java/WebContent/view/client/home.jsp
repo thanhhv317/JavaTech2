@@ -111,7 +111,7 @@ pageEncoding="utf-8"%>
                                 <img src="${pageContext.request.contextPath}/root/img/product/1.jpg" alt="book" class="primary" />
                             </a>
                             <div class="quick-view">
-                                <a class="action-view" href="#" data-target="#productModal" data-toggle="modal" title="Quick View">
+                                <a class="action-view btnDetail" href="#" data-id="22" data-target="#productModal" data-toggle="modal" title="Quick View">
                                     <i class="fa fa-search-plus"></i>
                                 </a>
                             </div>

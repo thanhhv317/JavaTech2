@@ -87,6 +87,9 @@ public class ShowProduct extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+//		PrintWriter out=resp.getWriter();
+//		out.print(arrBook.size());
+		
 		req.setAttribute("data", arrBook);
 		req.setAttribute("total", totalBook);
 		req.setAttribute("selectedPage", page);

@@ -109,6 +109,21 @@
 			<!-- footer-bottom-end -->
 		</footer>
 		<!-- footer-area-end -->
+				<!-- Modal -->
+<div class="modal fade" id="productModal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+    	<div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                	<span aria-hidden="true">x</span>
+                </button>
+            </div>
+            <div class="modal-body" id="single-product" >
+            </div>
+        </div>
+    </div>
+</div>       
+        <!-- Modal end -->
 
 		
 		
@@ -152,5 +167,25 @@
         <script src="${pageContext.request.contextPath}/root/js/viewCart.js"></script>
         
         <script src="${pageContext.request.contextPath}/root/js/checkout.js"></script>
+        <script>
+
+		$(function(){
+			$(".btnDetail").click(function(e){
+				var id=$(this).data("id");
+				e.preventDefault();
+				$.ajax({
+	                url : "${pageContext.request.contextPath}/SingleProduct",
+	                type : "post",
+	                data : {
+	                     bookID:id
+	                },
+	                success : function (result){
+	                    $("#single-product").html(result);
+	                }
+	            });
+				
+			})
+		});
+</script>
     </body>
 </html>

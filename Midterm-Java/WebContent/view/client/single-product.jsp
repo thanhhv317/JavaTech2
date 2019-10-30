@@ -13,12 +13,15 @@ pageEncoding="utf-8"%>
         </div>
     </div>
     <div class="col-md-7 col-sm-7 col-xs-12">
-        <div class="modal-pro-content">
-            <h3><%= book.bookName %></h3>
+        <div class="modal-pro-content" style="">
+            <h3 style="width:505px;"><%= book.bookName %></h3>
             <div class="price">
                 <span><%= book.price %> VND</span>
             </div>
-            <p><%= book.description %></p>	
+            <div style="overflow-y: scroll; height: 250px; width:500px;margin-right:-1000px	">
+            <%= book.description %>
+            </div>
+            <hr/>
             <form>
                 <input type="number" class="add-quantity" min="1" value="1" />
                 <button type="button" onclick="addToCart(<%= book.bookID %>, '<%= book.bookName %>', <%= book.price %>, '${pageContext.request.contextPath}/images/<%= book.image %>', Number($('.add-quantity').val()));">Add to cart</button>
