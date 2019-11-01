@@ -1,5 +1,7 @@
 package com.java.model.client;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,6 +47,29 @@ public class OrderModel {
 			cart.add(new OrderDetailModel(id,price,quantity));
 		}
 		return cart;
+	}
+	public String checkQuantity() {
+		String res="";
+		for (int i=0;i<this.cart.size();++i) {
+			OrderDetailModel d= this.cart.get(i);
+			String sql="Select BookName,Quantity from books where BookID="+d.bookID;
+			ResultSet rs=conn.getData(sql);
+			int quantity=0;
+			String name="";
+			try {
+				while(rs.next()){
+					name=rs.getString(1);
+					quantity=rs.getInt(2);
+				}
+				if (quantity-d.quantity<0) res+=name+" chỉ còn "+quantity+" cuốn, ";
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if (!res.equals("")) res=res.substring(0,res.length()-2);
+		return res;
 	}
 	
 	public int handleOrder() {
