@@ -2,6 +2,7 @@ package com.java.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -46,5 +47,24 @@ public class ConnectDB {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	
+	public int createDataReturnLastID(String sql) {
+		 PreparedStatement ps;
+		 int generatedKey = 0;
+		try {
+			ps = conn.prepareStatement(sql,
+			        Statement.RETURN_GENERATED_KEYS);
+			ps.execute();
+			ResultSet rs = ps.getGeneratedKeys();
+			
+			if (rs.next()) {
+			    generatedKey = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return generatedKey;
 	}
 }

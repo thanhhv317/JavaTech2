@@ -29,44 +29,7 @@ pageEncoding="utf-8"%>
 	</div>
 </div>
 <!-- entry-header-area-end -->
-<!-- coupon-area-area-start -->
-<div class="coupon-area mb-30">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="coupon-accordion">
-					<h3>Bạn chưa đăng nhập!<span id="showlogin"> Click vào đây để đăng nhập và mua hàng</span></h3>
-					<div class="coupon-content" id="checkout-login">
-						<div class="coupon-info">
-							<p class="coupon-text">Đăng nhập để mua hàng 1 cách nhanh chóng.</p>
-							<form action="#">
-								<p class="form-row-first">
-									<label>Tài khoản <span class="required">*</span></label>
-									<input type="text">
-								</p>
-								<p class="form-row-last">
-									<label>Mật khẩu  <span class="required">*</span></label>
-									<input type="text">
-								</p>
-								<p class="form-row">					
-									<input type="submit" value="Login">
-									<label>
-										<input type="checkbox">
-										 Ghi nhớ đăng nhập
-									</label>
-								</p>
-								<p class="lost-password">
-									<a href="#">Bạn chưa có tài khoản?</a>
-								</p>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- coupon-area-area-end -->
+
 <!-- checkout-area-start -->
 <div class="checkout-area mb-30">
 	<div class="container">
@@ -79,19 +42,22 @@ pageEncoding="utf-8"%>
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
 								<div class="checkout-form-list">
 									<label>Họ và tên<span class="required">*</span></label>										
-									<input type="text" placeholder="">
+									<input type="text" id="cusName" placeholder="">
+									<p style="color:red" id="errorName"></p>
 								</div>
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 								<div class="checkout-form-list">
 									<label>Số điện thoại<span class="required">*</span></label>										
-									<input type="text" placeholder="">
+									<input type="text" id="cusPhone" placeholder="">
+									<p style="color:red" id="errorPhone"></p>
 								</div>
 							</div>
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 								<div class="checkout-form-list">
 									<label>Địa chỉ</label>
-									<input type="text" placeholder="">
+									<input type="text" id="cusAddress" placeholder="">
+									<p style="color:red" id="errorAddress"></p>
 								</div>
 							</div>			
 						</div>
@@ -213,7 +179,7 @@ pageEncoding="utf-8"%>
 								</div>
 							</div>
 							<div class="order-button-payment">
-								<input type="button" value="Đặt hàng">
+								<input type="button" id="btnOrder" value="Đặt hàng">
 							</div>
 						</div>
 					</div>
@@ -223,3 +189,91 @@ pageEncoding="utf-8"%>
 	</div>
 </div>
 	<%@ include file="includes/footer.jsp" %>
+<script>
+//group data for orderDetail
+function groupCart() {
+    var result = [];
+    let max = localStorage.length;
+    for (let i = 0; i < max; ++i) {
+        var key = localStorage.key(i);
+        if (key.charAt(0) == 'c' && key.charAt(1) == 'a') {
+            result.push(localStorage.getItem(key));
+        }
+    }
+    return result;
+}
+function validate(cusName,cusPhone,cusAddress){
+	let isNoError=true;
+	if (cusName.length==0){
+		isNoError=false;
+		$("#errorName").text("Họ tên không được để trống");
+	}
+	else{
+		$("#errorName").text("");
+	}
+	if (cusPhone.length==0){
+		isNoError=false;
+		$("#errorPhone").text("Số điện thoại không được để trống");
+		
+	}
+	else{
+		
+		let pattern=/0[3789][0-9]{8}/;
+		if (pattern.test(cusPhone)){
+			$("#errorPhone").text("");
+		}
+		else{
+			isNoError=false;
+			$("#errorPhone").text("Số điện thoại không hợp lệ");
+		}
+	}
+	if (cusAddress.length==0){
+		isNoError=false;
+		$("#errorAddress").text("Địa chỉ không được để trống");
+	}
+	else{
+		$("#errorAddress").text("");
+	}
+}
+$("#btnOrder").click(function(){
+	cart=groupCart();
+	
+	if (cart.length>0){
+		let cusName=$("#cusName").val();
+		let cusPhone=$("#cusPhone").val();
+		let cusAddress=$("#cusAddress").val();
+		let note=$("#checkout-mess").val();
+		let cart = "["+groupCart()+"]";
+		validate(cusName,cusPhone,cusAddress);
+		$.ajax({
+	        url : "${pageContext.request.contextPath}/Checkout",
+	        type : "post",
+	        data : {
+	        	 name:cusName,
+	        	 phone:cusPhone,
+	        	 address:cusAddress,
+	        	 note:note,
+	             cart:cart
+	        },
+	        success : function (result){
+	            handleResult(result);
+	        }
+	    });
+	}
+	else{
+		alert("Giỏ hàng của bạn đang trống");
+	}
+});
+function handleResult(result){
+	if (result!=0){
+		Swal.fire(
+				  'Đặt hàng thành công!',
+				  'Mã đơn hàng của bạn là '+result+". Xin vui lòng ghi lại mã đơn hàng",
+				  'success'
+				).then(()=>{
+					localStorage.clear();
+					window.location.href = "${pageContext.request.contextPath}/";
+				});
+	}
+}
+</script>
