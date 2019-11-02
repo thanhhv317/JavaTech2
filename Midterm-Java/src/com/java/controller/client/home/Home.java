@@ -51,7 +51,7 @@ public class Home extends HttpServlet {
 	
 	public ArrayList<BookViewHomeClient> GetListBookDESC(){
 		ConnectDB conn = new ConnectDB();
-		String sql = "Select * from books where Status = 1 orderby bookId DESC limit 12";
+		String sql = "Select * from books where Status = 1 order by bookId DESC limit 12";
 
 		ResultSet rs = conn.getData(sql);
 		ArrayList<BookViewHomeClient> Books = new ArrayList<BookViewHomeClient>();
