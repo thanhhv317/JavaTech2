@@ -31,9 +31,14 @@ public class Category extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
+		// neu chua dang nhap chuyen ve login
 		if (session.getAttribute("name") == null) {
 			resp.sendRedirect(req.getContextPath()+"/Login");
 		}
+		// neu dang nhap ma la customer chuyen ve client
+		else if(Integer.parseInt(session.getAttribute("level").toString())==1){
+			resp.sendRedirect(req.getContextPath());
+        }
 		else {
 			resp.setContentType("text/html;charset=UTF-8");
 			req.setCharacterEncoding("utf-8");
@@ -100,7 +105,6 @@ public class Category extends HttpServlet {
 				String sql = String.format("Delete from categories where CategoryID=%s", id);
 				boolean result = conn.updateData(sql);
 				PrintWriter out = resp.getWriter();
-		
 				if (result) {
 					out.print("success");
 				}
@@ -147,6 +151,21 @@ public class Category extends HttpServlet {
 						e.printStackTrace();
 					}
 				resp.getWriter().println(searchResult(arrCate));
+				break;
+			}
+			case "add":{
+				String name=req.getParameter("categoryName");
+				String quatity=req.getParameter("quantity");
+				String status=req.getParameter("status");
+				String sql =String.format("Insert into categories values (null, '%s',%s, %s)", name, quatity, status);
+				boolean result = conn.updateData(sql);
+				PrintWriter out = resp.getWriter();
+				if (result) {
+					out.print("success");
+				}
+				else {
+					out.print("fail");
+				}
 				break;
 			}
 		}

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.java.model.PublisherModel" %>
+<%@page import="com.java.model.CategoryModel" %>
 <!doctype html>
 <html lang="en">
   <head>
@@ -17,7 +20,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    <!-- css style -->SS
+    <!-- css style -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/dashboard.css">
 
     <title>Admin</title>
@@ -34,23 +37,21 @@
     </div>
 
     <ul class="list-unstyled components">
-      <li>
-        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-book"></i> Sản Phẩm</a>
-        <ul class="collapse list-unstyled" id="homeSubmenu">
-          <li>
-            <a href="dashboard.html">Sản Phẩm 1</a>
-          </li>
-          <li>
-            <a href="#">Sản Phẩm 2</a>
-          </li>
-        </ul>
+       <li>
+        <a href="${pageContext.request.contextPath}/Dashboard"><i class="fas fa-book"></i> Sản Phẩm</a>
       </li>
 
       <li>
-        <a href="#"><i class="fa fa-fw fa-database"></i> Danh mục</a>
+        <a href="${pageContext.request.contextPath}/Category"><i class="fa fa-fw fa-database"></i> Danh mục</a>
       </li>
       <li>
-        <a href="#"><i class="fa fa-fw fa-user"></i> Nhà sản xuất</a>
+        <a href="${pageContext.request.contextPath}/Publisher"><i class="fa fa-fw fa-user"></i> Nhà sản xuất</a>
+      </li>
+      <li>
+        <a href="${pageContext.request.contextPath}/Feedback"><i class="fa fa-fw fa-comment-dots"></i> Phản hồi</a>
+      </li>
+      <li>
+        <a href="${pageContext.request.contextPath}/Order"><i class="far fa-money-bill-alt"></i> Đơn đặt hàng</a>
       </li>
     </ul>
   </div>
@@ -73,15 +74,21 @@
           <li class="nav-item">
             <div class="btn-group dropleft">
               <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Minh LC
+                <% 
+	                if(session.getAttribute("name") != null){
+	                	out.print(session.getAttribute("name"));
+	                }
+	                else{
+	                	response.sendRedirect(request.getContextPath()+"/Login");
+	                }
+                %>
               </button>
               <div class="dropdown-menu">
                 <div class="text-center">
-                  <img src="https://via.placeholder.com/150x150" class="rounded-circle" alt="nguoi-dung">
+                  <img src="images/login.png" width="50px" height="50px" class="rounded-circle" alt="nguoi-dung">
                 </div>
                 <div class="btn-group mt-2 m-1 d-flex justify-content-center" role="group">
-                  <button class="btn btn-success" title="log-out"><i class="fas fa-sign-out-alt"></i></button>
-                  <button class="btn btn-primary" title="information"><i class="fas fa-address-card"></i></button>
+                  <a href="${pageContext.request.contextPath}/Login" class="btn btn-success" title="log-out"><i class="fas fa-sign-out-alt"></i></a>
                 </div>
               </div>
             </div>
@@ -92,26 +99,6 @@
     </nav>
   <!-- end navbar -->
 
-  <!-- modal view product detail -->
-  <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-      <div class="modal-content">
-        <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Thông tin sản phẩm</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-      </div>
-    </div>
-  </div>
-  <!-- end modal product detail -->
   <div class="row">
     <div class="container">
       <nav aria-label="breadcrumb">
@@ -126,73 +113,84 @@
 
   <!-- content -->
   <div class="container">
-      <form>
+      <form action="${pageContext.request.contextPath}/AddBook" method="POST" enctype="multipart/form-data">
     <div class="row">
       
       <div class="col-6">
           <div class="form-group">
             <label>Tên sản phẩm</label>
-            <input type="text" class="form-control" placeholder="khéo ăn khéo nói sẽ có được thiên hạ">
+            <input type="text" class="form-control" name="nameBook"/>
           </div>
           <div class="form-group">
             <label>Danh mục</label>
-            <select class="form-control">
-              <option>Tiểu thuyết</option>
-              <option>Ngôn tình</option>
-              <option>Truyện tranh</option>
+            <select class="form-control" name="opBook">
+            	<%	ArrayList<CategoryModel> arrCate = (ArrayList<CategoryModel>)request.getAttribute("dataCate"); 
+            		for(int i=0; i<arrCate.size(); ++i){
+            			CategoryModel cate = arrCate.get(i);
+            		%>
+            			<option value="<%= cate.categoryID %>"><%=arrCate.get(i).name %></option>
+            		<%}
+            	%>
             </select>
           </div>
            <div class="form-group">
             <label>Nhà xuất bản</label>
-            <select class="form-control">
-              <option>NXB trẻ</option>
-              <option>NXB Hà Nội</option>
-              <option>NXB TP Hồ Chí Minh</option>
+            <select class="form-control" name="opNXB">
+              	<% ArrayList<PublisherModel> arrPub = (ArrayList<PublisherModel>)request.getAttribute("dataPub"); 
+            		for(int i=0; i<arrPub.size(); ++i){
+            			PublisherModel pub = arrPub.get(i);
+            		%>
+            			<option value="<%= pub.publisherID %>"><%= pub.publisherName %></option>
+            		<%}
+            	%>
             </select>
           </div>
           <div class="form-group">
             <label>Số lượng</label>
-            <input type="text" class="form-control" placeholder="500">
+            <input type="text" class="form-control" name="quantityBook" />
           </div>
           <div class="form-group">
             <label>Giá</label>
-            <input type="text" class="form-control" placeholder="37000">
+            <input type="text" class="form-control" name="priceBook" />
           </div>
           <div class="form-group">
             <label>Mô tả</label>
-            <textarea class="form-control" rows="3"></textarea>
+            <textarea class="form-control" rows="3" name="descriptionBook"></textarea>
           </div>
       </div>
 
       <div class="col-6">
         <div class="form-group">
           <label>Ngày nhập</label>
-          <input type="date" class="form-control">
+          <input type="date" class="form-control" name="createDate">
+        </div>
+        <div class="form-group">
+            <label>Tác giả</label>
+            <input type="text" class="form-control" name="authBook" />
         </div>
         <div class="form-group">
           <label>Trạng thái</label>
-          <select class="form-control">
-            <option>Enable</option>
-            <option>Disable</option>
+          <select class="form-control" name="opStatus">
+            <option value="1">Enable</option>
+            <option value="0">Disable</option>
           </select>
         </div>
         <div class="form-group">
           <label>Hình ảnh</label>
-          <input class="form-control" type="file" id="imgInp" />
+          <input class="form-control" type="file" name="photo" id="imgInp"/>
           <img id="blah" class="image-thumbnail mt-2" />
         </div>
+        
       </div>
 
       <br>
       <div class="container mt-2 mb-4">
-        <button class="btn btn-success"><i class="fas fa-save"></i> Save</button> 
+        <button class="btn btn-success" id="saveBook"><i class="fas fa-save"></i> Save</button> 
       </div>
     </div>
     </form>
 
   </div>
-
-	<h1>${pageContext.request.contextPath}</h1>
   <!-- end content -->
 
   </div>
@@ -208,6 +206,5 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
   <script src="${pageContext.request.contextPath}/js/dashboard.js"></script>
-
 </body>
 </html>

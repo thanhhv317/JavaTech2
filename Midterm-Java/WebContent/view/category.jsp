@@ -36,23 +36,21 @@
     </div>
 
     <ul class="list-unstyled components">
-      <li>
-        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-book"></i> Sản Phẩm</a>
-        <ul class="collapse list-unstyled" id="homeSubmenu">
-          <li>
-            <a href="#">Sản Phẩm 1</a>
-          </li>
-          <li>
-            <a href="#">Sản Phẩm 2</a>
-          </li>
-        </ul>
+       <li>
+        <a href="${pageContext.request.contextPath}/Dashboard"><i class="fas fa-book"></i> Sản Phẩm</a>
       </li>
 
       <li>
-        <a href="#"><i class="fa fa-fw fa-database"></i> Danh mục</a>
+        <a href="${pageContext.request.contextPath}/Category"><i class="fa fa-fw fa-database"></i> Danh mục</a>
       </li>
       <li>
-        <a href="#"><i class="fa fa-fw fa-user"></i> Nhà sản xuất</a>
+        <a href="${pageContext.request.contextPath}/Publisher"><i class="fa fa-fw fa-user"></i> Nhà sản xuất</a>
+      </li>
+      <li>
+        <a href="${pageContext.request.contextPath}/Feedback"><i class="fa fa-fw fa-comment-dots"></i> Phản hồi</a>
+      </li>
+      <li>
+        <a href="${pageContext.request.contextPath}/Order"><i class="far fa-money-bill-alt"></i> Đơn đặt hàng</a>
       </li>
     </ul>
   </div>
@@ -84,11 +82,10 @@
               </button>
               <div class="dropdown-menu">
                 <div class="text-center">
-                  <img src="https://via.placeholder.com/150x150" class="rounded-circle" alt="nguoi-dung">
+                  <img src="${pageContext.request.contextPath}/images/login.png" width="50px" height="50px" class="rounded-circle" alt="nguoi-dung">
                 </div>
                 <div class="btn-group mt-2 m-1 d-flex justify-content-center" role="group">
-                  <button class="btn btn-success" title="log-out"><i class="fas fa-sign-out-alt"></i></button>
-                  <button class="btn btn-primary" title="information"><i class="fas fa-address-card"></i></button>
+                  <a href="${pageContext.request.contextPath}/Login" class="btn btn-success" title="log-out"><i class="fas fa-sign-out-alt"></i></a>
                 </div>
               </div>
             </div>
@@ -131,8 +128,8 @@
           </li>
           <li class="breadcrumb-item active">
             <div class="btn-group" role="group">
-              <a href="${pageContext.request.contextPath}/view/add-product.jsp" class="btn btn-outline-success"><i class="fas fa-plus"></i> Thêm mới</a>
-              <button type="button" class="btn btn-outline-primary">Thống kê</button>
+              <a href="${pageContext.request.contextPath}/view/add-category.jsp" class="btn btn-outline-success"><i class="fas fa-plus"></i> Thêm mới</a>
+              
             </div>
           </li>
         </ol>
@@ -162,7 +159,7 @@
  		 </div>
  		 <div class="custom-control custom-switch">
 			  <input type="checkbox" class="custom-control-input" id="categoryStatus">
-			  <label class="custom-control-label" for="categoryStatus">Trạng thái hiện thị</label>
+			  <label class="custom-control-label" for="categoryStatus">Trạng thái hiển thị</label>
 		</div>
       </div>
       <div class="modal-footer">
@@ -216,28 +213,6 @@
           
         </tbody>
       </table>
-    <!-- pagination -->
-    <div class="container d-flex justify-content-center">
-      <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      </div>
-<!-- end pagination -->
-
     </div>
   </div>
 
@@ -256,7 +231,6 @@
   <script src="${pageContext.request.contextPath}/js/dashboard.js"></script>
 	<script>
 	$(".editProduct").click(function(){
-		alert(this.id);
 		  $.ajax({
 			  url: "${pageContext.request.contextPath}/Category", 
 			  type: "GET",
@@ -312,7 +286,6 @@
 	});
 	
 	$(".delete").click(function(){
-		alert(this.id);
 		$.ajax({
 			  url: "${pageContext.request.contextPath}/Category", 
 			  type: "POST",
@@ -360,7 +333,6 @@
 					  location.reload();
 				  }
 				  else{
-					
 				  	alert("Xóa thất bại. Vui lòng thử lại");
 				  }
 			  }

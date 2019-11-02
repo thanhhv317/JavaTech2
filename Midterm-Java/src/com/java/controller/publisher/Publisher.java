@@ -30,6 +30,9 @@ public class Publisher extends HttpServlet{
 		if(session.getAttribute("name") == null){
 			resp.sendRedirect(req.getContextPath()+"/Login");
         }
+		else if(Integer.parseInt(session.getAttribute("level").toString())==1){
+			resp.sendRedirect(req.getContextPath());
+        }
 		else {
 			String sql=String.format("Select * from publishers");
 			ArrayList<PublisherModel> arrPub = new ArrayList<PublisherModel>();

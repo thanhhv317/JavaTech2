@@ -70,7 +70,7 @@ public class SearchBook extends HttpServlet {
 					"            <th scope=\"row\">%d</th>\r\n" + 
 					"            <td><a class=\"view-product\" data-toggle=\"modal\" data-target=\".bd-example-modal-xl\">%s</a></td>\r\n" + 
 					"            <td>\r\n"+
-					"              <img src=\"%s\" alt=\"do-re-mon\" class=\"img-thumbnail product-img\">\r\n" + 
+					"              <img src=\"images/%s\" alt=\"do-re-mon\" class=\"img-thumbnail product-img\">\r\n" + 
 					"            </td>\r\n" + 
 					"            <td>%s</td>\r\n" + 
 					"            <td>%s</td>\r\n" + 
@@ -82,12 +82,12 @@ public class SearchBook extends HttpServlet {
 					"            <td>%s</td>\r\n"+
 					"            <td>\r\n" + 
 					"              <div class=\"btn-group\">\r\n" + 
-					"                <button type=\"button\" class=\"btn btn-secondary\"><i class=\"fas fa-edit\"></i></button>&nbsp;\r\n" + 
+					"                <button type=\"button\" onclick=\"editItem(%d)\" class=\"btn btn-secondary\"><i class=\"fas fa-edit\"></i></button>&nbsp;\r\n" + 
 					"                <button type=\"button\" onclick=\"deleteItem(%d)\" class=\"btn btn-secondary\"><i class=\"fas fa-trash\"></i></button>\r\n" + 
 					"              </div>\r\n" + 
 					"            </td>\r\n" + 
 					"          </tr>", 
-					i+1, book.bookName, book.image, book.publisherName,book.categoryName, book.author, book.price, book.quantity,strDate, book.createBy,book.status?"Active":"None", book.bookID);
+					i+1, book.bookName, book.image, book.publisherName,book.categoryName, book.author, book.price, book.quantity,strDate, book.createBy,book.status?"Active":"None", book.bookID,book.bookID);
 	}
 		return res;
 	}

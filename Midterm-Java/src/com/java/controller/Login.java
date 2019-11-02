@@ -36,30 +36,36 @@ public class Login extends HttpServlet {
 		String password = encrypt_MD5(req.getParameter("password"));
 		String sql=String.format("Select * from users where UserName='%s' and Password='%s'", username, password);		
 		ResultSet rs = conn.getData(sql);
-			try {
-					
-					while(rs.next()){
-						User u = new User();
-						u.userID= rs.getInt(1);
-						u.name=rs.getString(2);
-						u.userName=rs.getString(3);
-						u.passWord=rs.getString(4);
-						u.address=rs.getString(5);
-						u.phone=rs.getString(6);
-						u.email=rs.getString(7);
-						HttpSession session = req.getSession();
-						session.setAttribute("name", u.name);
-						resp.sendRedirect(req.getContextPath()+"/Dashboard");
-						return;
-					}
+		try {
 				
-					resp.sendRedirect(req.getContextPath()+"/view/login.jsp?error=1");
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		//resp.sendRedirect(req.getContextPath()+"/view/login.jsp?error=1");
+				while(rs.next()){
+					User u = new User();
+					u.userID= rs.getInt(1);
+					u.name=rs.getString(2);
+					u.userName=rs.getString(3);
+					u.passWord=rs.getString(4);
+					u.address=rs.getString(6);
+					u.phone=rs.getString(7);
+					u.email=rs.getString(8);
+					u.level = rs.getInt(5);
+					HttpSession session = req.getSession();
+					session.setAttribute("name", u.name);
+					session.setAttribute("userID", u.userID);
+					session.setAttribute("level", u.level);
+					if(u.level == 1) {
+						resp.sendRedirect(req.getContextPath());
+					}
+					else {
+						resp.sendRedirect(req.getContextPath()+"/Dashboard");
+					}
+					return;
+				}
+			
+				resp.sendRedirect(req.getContextPath()+"/view/login.jsp?error=1");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
     private String encrypt_MD5(String text) {
         MessageDigest md;
