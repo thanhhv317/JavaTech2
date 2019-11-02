@@ -179,7 +179,7 @@
 			animationEnabled: true,  
 			theme: "light1",
 			title:{
-				text: "Thống kê số đơn đặt hàng theo từng tháng"
+				text: "Statistics of orders by month"
 			},
 			axisY: {
 				title: "Số lượng",
