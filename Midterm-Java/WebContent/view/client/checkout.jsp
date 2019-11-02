@@ -191,91 +191,104 @@ pageEncoding="utf-8"%>
 	<%@ include file="includes/footer.jsp" %>
 <script>
 //group data for orderDetail
-function groupCart() {
-    var result = [];
-    let max = localStorage.length;
-    for (let i = 0; i < max; ++i) {
-        var key = localStorage.key(i);
-        if (key.charAt(0) == 'c' && key.charAt(1) == 'a') {
-            result.push(localStorage.getItem(key));
-        }
-    }
-    return result;
-}
-function validate(cusName,cusPhone,cusAddress){
-	let isNoError=true;
-	if (cusName.length==0){
-		isNoError=false;
-		$("#errorName").text("Họ tên không được để trống");
+	function groupCart() {
+	    var result = [];
+	    let max = localStorage.length;
+	    for (let i = 0; i < max; ++i) {
+	        var key = localStorage.key(i);
+	        if (key.charAt(0) == 'c' && key.charAt(1) == 'a') {
+	            result.push(localStorage.getItem(key));
+	        }
+	    }
+	    return result;
 	}
-	else{
-		$("#errorName").text("");
-	}
-	if (cusPhone.length==0){
-		isNoError=false;
-		$("#errorPhone").text("Số điện thoại không được để trống");
-		
-	}
-	else{
-		
-		let pattern=/0[3789][0-9]{8}/;
-		if (pattern.test(cusPhone)){
-			$("#errorPhone").text("");
+	function validate(cusName,cusPhone,cusAddress){
+		let isNoError=true;
+		if (cusName.length==0){
+			isNoError=false;
+			$("#errorName").text("Họ tên không được để trống");
 		}
 		else{
+			$("#errorName").text("");
+		}
+		if (cusPhone.length==0){
 			isNoError=false;
-			$("#errorPhone").text("Số điện thoại không hợp lệ");
+			$("#errorPhone").text("Số điện thoại không được để trống");
+			
 		}
+		else{
+			
+			let pattern=/0[3789][0-9]{8}/;
+			if (pattern.test(cusPhone)){
+				$("#errorPhone").text("");
+			}
+			else{
+				isNoError=false;
+				$("#errorPhone").text("Số điện thoại không hợp lệ");
+			}
+		}
+		if (cusAddress.length==0){
+			isNoError=false;
+			$("#errorAddress").text("Địa chỉ không được để trống");
+		}
+		else{
+			$("#errorAddress").text("");
+		}
+		return isNoError;
 	}
-	if (cusAddress.length==0){
-		isNoError=false;
-		$("#errorAddress").text("Địa chỉ không được để trống");
-	}
-	else{
-		$("#errorAddress").text("");
-	}
-	return isNoError;
-}
-$("#btnOrder").click(function(){
-	cart=groupCart();
 	
-	if (cart.length>0){
-		let cusName=$("#cusName").val();
-		let cusPhone=$("#cusPhone").val();
-		let cusAddress=$("#cusAddress").val();
-		let note=$("#checkout-mess").val();
-		let cart = "["+groupCart()+"]";
-		if(validate(cusName,cusPhone,cusAddress)){
-			$.ajax({
-		        url : "${pageContext.request.contextPath}/Checkout",
-		        type : "post",
-		        data : {
-		        	 name:cusName,
-		        	 phone:cusPhone,
-		        	 address:cusAddress,
-		        	 note:note,
-		             cart:cart
-		        },
-		        success : function (result){
-		            handleResult(result);
-		        }
-		    });
+	$("#btnOrder").click(function(){
+		let cart=groupCart();
+		if (cart.length>0){
+			let cusName=$("#cusName").val();
+			let cusPhone=$("#cusPhone").val();
+			let cusAddress=$("#cusAddress").val();
+			let note=$("#checkout-mess").val();
+			cart = "["+cart+"]";
+			if(validate(cusName,cusPhone,cusAddress)){
+				$.ajax({
+			        url : "${pageContext.request.contextPath}/Checkout",
+			        type : "post",
+			        data : {
+			        	 name:cusName,
+			        	 phone:cusPhone,
+			        	 address:cusAddress,
+			        	 note:note,
+			        	 total:getTotalPrice(),
+			             cart:cart
+			        },
+			        success : function (result){
+			            handleResult(result);
+			        }
+			    });
+			}
+		}
+		else{
+			Swal.fire({
+				type:'error',
+				title:"Không thể đặt hàng",
+				text:"Giỏ hàng của bạn đang trống"
+			})
+		}
+	});
+	function handleResult(result){
+		if(result.indexOf("error")!=-1){
+			result=result.substring(6);
+			Swal.fire({
+				  type: 'error',
+				  title: 'Đã xảy ra lỗi',
+				  text: result
+				})
+		}
+		else if(result!=0){
+			Swal.fire(
+					  'Đặt hàng thành công!',
+					  'Mã đơn hàng của bạn là '+result+". Xin vui lòng ghi lại mã đơn hàng",
+					  'success'
+					).then(()=>{
+						localStorage.clear();
+						window.location.href = "${pageContext.request.contextPath}/";
+					});
 		}
 	}
-	else{
-		alert("Giỏ hàng của bạn đang trống");
-	}
-});
-function handleResult(result){
-	if (result!=0){
-		Swal.fire(
-				  'Đặt hàng thành công!',
-				  'Mã đơn hàng của bạn là '+result+". Xin vui lòng ghi lại mã đơn hàng",
-				  'success'
-				).then(()=>{
-					localStorage.clear();
-					window.location.href = "${pageContext.request.contextPath}/";
-				});
-	}
-}
 </script>

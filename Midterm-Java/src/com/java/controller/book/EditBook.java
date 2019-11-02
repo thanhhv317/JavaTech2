@@ -125,8 +125,7 @@ public class EditBook extends HttpServlet{
 		String status = req.getParameter("status");
 		String image = uploadFile(req);
 		String sql="";
-		resp.getWriter().print(image);
-		if (!image.equals("")){
+		if (!image.equals("images/")){
 			sql=String.format("update books set CategoryID=%s, PublisherID=%s, BookName='%s', Author='%s', Price=%s, Image='%s' ,"
 								+ "Description='%s', Quantity=%s, CreateDate='%s', Status=%s  where BookID=%s"
 								,categoryID, publisherID, bookName,author,price,image,description,quantity, createDate, status, id);

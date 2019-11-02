@@ -1,7 +1,10 @@
 package com.java.controller.client.home;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.java.model.BookViewHomeClient;
 import com.java.model.CategoryModel;
+import com.java.model.ConnectDB;
 import com.java.common.*;
 
 @WebServlet("")
@@ -22,6 +27,9 @@ public class Home extends HttpServlet {
 		ProductCategory p = new ProductCategory();
 		array = p.GetListCate();
 		req.setAttribute("category", array);
+		req.setAttribute("topPopular", RandomProduct(6));
+		req.setAttribute("topAuthor", RandomProduct(6));
+		req.setAttribute("BookListNew", GetListBookDESC());
 		req.getRequestDispatcher("view/client/home.jsp").forward(req, resp);
 	}
 	
@@ -86,5 +94,6 @@ public class Home extends HttpServlet {
 		}
 		return Books;
 	}
+	
 }
 
