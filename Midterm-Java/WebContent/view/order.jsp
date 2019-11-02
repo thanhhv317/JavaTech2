@@ -179,6 +179,7 @@
             <th scope="col">Số điện thoại</th>
             <th scope="col">Tổng tiền</th>
             <th scope="col">Trạng thái</th>
+            <th scope="col">Ghi chú</th>
             <th scope="col">Chức năng</th>
           </tr>
         </thead>
@@ -207,6 +208,7 @@
             		
 			  	</select>
             </td>
+            <td><%= order.note %></td>
             <td>
               <div class="btn-group">
                 <button id="" type="button" class="btn btn-secondary show" onclick="viewOrder(<%= order.orderID %>)" data-toggle="modal" data-target="#modalCategory"><i class="far fa-eye"></i></button>&nbsp;
