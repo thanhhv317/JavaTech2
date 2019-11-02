@@ -67,8 +67,8 @@ public class FilterOrder extends HttpServlet {
 			String status="<select class='form-control' id='status-"+order.orderID+"' onchange='changeStatus("+order.orderID+")'>\r\n"+
 					"<option value='1'"+ ((order.status==1)?"selected":"") +" >Chưa xác nhận</option>\r\n"+
 					"<option value='2'" +((order.status == 2)?"selected":"") +">Đã tiếp nhận</option>\r\n"+
-					"<option value='3'"+ ((order.status == 3)?"selected":"")+" >Hủy bỏ</option>\r\n"+
-					"<option value='4'"+ ((order.status == 4)?"selected":"")+" >Đã giao hang</option>\r\n"+
+					"<option value='3'"+ ((order.status == 3)?"selected":"")+" >Đã hủy</option>\r\n"+
+					"<option value='4'"+ ((order.status == 4)?"selected":"")+" >Đã giao hàng</option>\r\n"+
 							"</select>";
 			String button="                <button type=\"button\" class=\"btn btn-secondary\"  onclick=\"viewOrder("+order.orderID+")\" data-toggle=\"modal\" data-target=\"#modalCategory\"><i class=\"fas fa-eye\"></i></button>&nbsp;\r\n"+
 					"                <button type=\"button\" onclick=\"deleteOrder("+order.orderID+")\" class=\"btn btn-secondary\"><i class=\"fas fa-trash\"></i></button>\r\n";
@@ -86,7 +86,7 @@ public class FilterOrder extends HttpServlet {
 					"              </div>\r\n" + 
 					"            </td>\r\n" + 
 					"          </tr>", 
-					i+1, order.name, order.address, order.phone, order.total,order.note, status);
+					i+1, order.name, order.address, order.phone, order.total, status, order.note);
 	}
 		return res;
 	}

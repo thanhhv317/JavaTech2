@@ -51,6 +51,9 @@
       <li>
         <a href="${pageContext.request.contextPath}/Order"><i class="far fa-money-bill-alt"></i> Đơn đặt hàng</a>
       </li>
+      <li>
+        <a href="${pageContext.request.contextPath}/Statistical"><i class="fa fa-chart-line"></i> Thống kê</a>
+      </li>
     </ul>
   </div>
   </nav>

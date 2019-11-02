@@ -52,6 +52,9 @@
       <li>
         <a href="${pageContext.request.contextPath}/Order"><i class="far fa-money-bill-alt"></i> Đơn đặt hàng</a>
       </li>
+       <li>
+        <a href="${pageContext.request.contextPath}/Statistical"><i class="fa fa-chart-line"></i> Thống kê</a>
+      </li>
     </ul>
   </div>
   </nav>
@@ -184,12 +187,12 @@
           </tr>
         </thead>
         <tbody id="listOrder">
-	    <tr>
+	   
     	<% ArrayList<Order> arrOrder =(ArrayList<Order>)request.getAttribute("data");
     	for(int i=0;i<arrOrder.size();++i){
 			 Order order = arrOrder.get(i);
 		 %>
-	    	
+    	 <tr>
             <th scope="row"><%= order.orderID %></th>
             <td><%= order.name %></td>
             <td><%= order.address %></td>
