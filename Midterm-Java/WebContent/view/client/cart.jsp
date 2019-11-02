@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 pageEncoding="utf-8"%>
 <%@ include file="includes/header.jsp" %>
+
+	<style>
+		.cart-product-image {
+			width:160px;
+			height:180px;
+		}
+	</style>
 	
 	<div class="breadcrumbs-area mb-70">
 		<div class="container">

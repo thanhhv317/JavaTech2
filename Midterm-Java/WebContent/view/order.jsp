@@ -113,8 +113,8 @@
        		</li>
            	<li class="breadcrumb-item active">
 	            <div class="btn-group" role="group">
-	            	<form method="post">
-	              		<input type="text" name="email">
+	            	<form method="post" action="${pageContext.request.contextPath}/SearchOrder">
+	              		<input type="text" name="orderID">
 	              	<button id="btnSearch" class="btn btn-outline-danger">Tìm kiếm</button>
 	             </form>
             	</div>
@@ -210,10 +210,8 @@
             <td>
               <div class="btn-group">
                 <button id="" type="button" class="btn btn-secondary show" onclick="viewOrder(<%= order.orderID %>)" data-toggle="modal" data-target="#modalCategory"><i class="far fa-eye"></i></button>&nbsp;
-                <button id="" type="button" class="btn btn-secondary show" onclick="editOrder(<%= order.orderID %>)" ><i class="far fa-edit"></i></button>&nbsp;
                 <button id="" type="button" class="btn btn-secondary delete" onclick="deleteOrder(<%= order.orderID %>)"><i class="fas fa-trash"></i></button>&nbsp;
-              	<a href="PrintOrder/<%= order.orderID %>" target="_blank" type="button" class="btn btn-secondary print" onclick="printOrder(<%= order.orderID %>)"><i class="fas fa-print"></i></a>
-              </div>
+              	</div>
             </td>
           </tr>
           <%}%>

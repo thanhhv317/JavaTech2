@@ -43,9 +43,15 @@ public class Index extends HttpServlet{
 		String address=req.getParameter("address");
 		String phone=req.getParameter("phone");
 		String note=req.getParameter("note");
-		int total=100;
+		int total=Integer.parseInt(req.getParameter("total"));
 		OrderModel model=new OrderModel(name, phone, address, note, total, json);
-		out.print(model.handleOrder());
+		String res=model.checkQuantity();
+		if (res=="") {
+			out.print(model.handleOrder());
+		}
+		else {
+			out.print("error:"+res);
+		}
 		
 	}
 		

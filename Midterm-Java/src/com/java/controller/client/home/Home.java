@@ -1,7 +1,11 @@
 package com.java.controller.client.home;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.java.model.BookViewHomeClient;
 import com.java.model.CategoryModel;
+import com.java.model.ConnectDB;
 import com.java.common.*;
 
 @WebServlet("")
@@ -18,10 +24,15 @@ public class Home extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		resp.setContentType("text/html;charset=UTF-8");
+		req.setCharacterEncoding("utf-8");
 		ArrayList<CategoryModel> array = new ArrayList<CategoryModel>();
 		ProductCategory p = new ProductCategory();
 		array = p.GetListCate();
 		req.setAttribute("category", array);
+		req.setAttribute("topPopular", RandomProduct(6));
+		req.setAttribute("topAuthor", RandomProduct(6));
+		req.setAttribute("BookListNew", GetListBookDESC());
 		req.getRequestDispatcher("view/client/home.jsp").forward(req, resp);
 	}
 	
@@ -43,7 +54,7 @@ public class Home extends HttpServlet {
 	
 	public ArrayList<BookViewHomeClient> GetListBookDESC(){
 		ConnectDB conn = new ConnectDB();
-		String sql = "Select * from books where Status = 1 orderby bookId DESC limit 12";
+		String sql = "Select * from books where Status = 1 order by bookId DESC limit 12";
 
 		ResultSet rs = conn.getData(sql);
 		ArrayList<BookViewHomeClient> Books = new ArrayList<BookViewHomeClient>();
@@ -86,5 +97,6 @@ public class Home extends HttpServlet {
 		}
 		return Books;
 	}
+	
 }
 

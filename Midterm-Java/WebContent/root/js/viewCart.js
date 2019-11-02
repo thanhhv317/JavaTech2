@@ -15,7 +15,7 @@ $(document).ready(function() {
 						<tr class="list-cart-product product-${obj.id}">
 						<td>
 							<div>
-							<img src="${obj.image}" alt="..." class="img-thumbnail cart-product-image">
+							<img src="${obj.image}" style="max-width:160px; max-height:180px;" alt="..." class="img-thumbnail cart-product-image">
 							</div>
 						</td>
 						<td>${obj.name}</td>
