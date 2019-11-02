@@ -16,7 +16,7 @@ pageEncoding="utf-8"%>
  		 </div>
  		  	<div class="form-group">
     		<b>Nội dung: </b></br>
-    		<div style="overflow-y: scroll; height: 200px;	">
+    		<div style="overflow-y: scroll; height: auto;	">
 		   	<%= fb.message %>
 		   	</div>
 </div>
