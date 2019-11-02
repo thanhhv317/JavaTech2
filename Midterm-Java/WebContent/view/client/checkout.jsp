@@ -234,6 +234,7 @@ function validate(cusName,cusPhone,cusAddress){
 	else{
 		$("#errorAddress").text("");
 	}
+	return isNoError;
 }
 $("#btnOrder").click(function(){
 	cart=groupCart();
@@ -244,21 +245,22 @@ $("#btnOrder").click(function(){
 		let cusAddress=$("#cusAddress").val();
 		let note=$("#checkout-mess").val();
 		let cart = "["+groupCart()+"]";
-		validate(cusName,cusPhone,cusAddress);
-		$.ajax({
-	        url : "${pageContext.request.contextPath}/Checkout",
-	        type : "post",
-	        data : {
-	        	 name:cusName,
-	        	 phone:cusPhone,
-	        	 address:cusAddress,
-	        	 note:note,
-	             cart:cart
-	        },
-	        success : function (result){
-	            handleResult(result);
-	        }
-	    });
+		if(validate(cusName,cusPhone,cusAddress)){
+			$.ajax({
+		        url : "${pageContext.request.contextPath}/Checkout",
+		        type : "post",
+		        data : {
+		        	 name:cusName,
+		        	 phone:cusPhone,
+		        	 address:cusAddress,
+		        	 note:note,
+		             cart:cart
+		        },
+		        success : function (result){
+		            handleResult(result);
+		        }
+		    });
+		}
 	}
 	else{
 		alert("Giỏ hàng của bạn đang trống");
