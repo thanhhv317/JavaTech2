@@ -29,7 +29,7 @@ public class Home extends HttpServlet {
 		req.setAttribute("category", array);
 		req.setAttribute("topPopular", RandomProduct(6));
 		req.setAttribute("topAuthor", RandomProduct(6));
-		req.setAttribute("BookListNew", RandomProduct(12));
+		req.setAttribute("BookListNew", GetListBookDESC());
 		req.getRequestDispatcher("view/client/home.jsp").forward(req, resp);
 	}
 	
@@ -47,6 +47,29 @@ public class Home extends HttpServlet {
 		
 		return BookListRandom;
 		
+	}
+	
+	public ArrayList<BookViewHomeClient> GetListBookDESC(){
+		ConnectDB conn = new ConnectDB();
+		String sql = "Select * from books where Status = 1 orderby bookId DESC limit 12";
+
+		ResultSet rs = conn.getData(sql);
+		ArrayList<BookViewHomeClient> Books = new ArrayList<BookViewHomeClient>();
+		
+		try {
+			while(rs.next()){
+				BookViewHomeClient book = new BookViewHomeClient();
+				book.BookID = rs.getInt(1);
+				book.BookName = rs.getString(4);
+				book.Image = rs.getString(7);
+				book.Price = rs.getInt(6);
+				Books.add(book);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return Books;
 	}
 	
 	public ArrayList<BookViewHomeClient> GetAllBook(){

@@ -149,7 +149,7 @@ pageEncoding="utf-8"%>
 	                        </div>
 	                        <div class="product-link">
 	                            <div class="product-button">
-	                                <a href="#" title="Add to cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+	                                <a style="cursor: pointer;" onclick="addToCart(<%=book.BookID %>, '<%= book.BookName %>', <%= book.Price %>, '${pageContext.request.contextPath}/images/<%= book.Image %>', 1)" title="Add to cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 	                            </div>
 	                            <div class="add-to-link">
 	                                <ul>
@@ -317,7 +317,7 @@ pageEncoding="utf-8"%>
 	                    </div>
 	                    <div class="product-link">
 	                        <div class="product-button">
-	                            <a href="#" title="Add to cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+	                            <a style="cursor: pointer;" onclick="addToCart(<%=book.BookID %>, '<%= book.BookName %>', <%= book.Price %>, '${pageContext.request.contextPath}/images/<%= book.Image %>', 1)" title="Add to cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 	                        </div>
 	                        <div class="add-to-link">
 	                            <ul>
@@ -363,7 +363,7 @@ pageEncoding="utf-8"%>
 	                    </div>
 	                    <div class="product-link">
 	                        <div class="product-button">
-	                            <a href="#" title="Add to cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+	                            <a style="cursor: pointer;" onclick="addToCart(<%=book.BookID %>, '<%= book.BookName %>', <%= book.Price %>, '${pageContext.request.contextPath}/images/<%= book.Image %>', 1)" title="Add to cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 	                        </div>
 	                        <div class="add-to-link">
 	                            <ul>
