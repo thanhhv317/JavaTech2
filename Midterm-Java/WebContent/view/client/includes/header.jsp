@@ -56,16 +56,7 @@ pageEncoding="utf-8"%>
 					</ul>
 				</div>
 			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-				<div class="account-area text-right">
-					<ul>
-						<li><a href="register.html">My Account</a></li>
-						<li><a href="checkout.html">Checkout</a></li>
-						<li><a href="
-						Login">Sign in</a></li>
-					</ul>
-				</div>
-			</div>
+			
 		</div>
 	</div>
 </div>
@@ -74,15 +65,7 @@ pageEncoding="utf-8"%>
 <div class="header-mid-area ptb-40">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-3 col-md-3 col-sm-5 col-xs-12">
-				<div class="header-search">
-					<form action="#">
-						<input type="text" placeholder="Search entire store here..." />
-						<a href="#"><i class="fa fa-search"></i></a>
-					</form>
-				</div>
-			</div>
-			<div class="col-lg-6 col-md-6 col-sm-4 col-xs-12">
+			<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
 				<div class="logo-area text-center logo-xs-mrg">
 					<a href="index.html"><img src="${pageContext.request.contextPath}/root/img/logo/logo.png" alt="logo" /></a>
 				</div>
@@ -117,8 +100,23 @@ pageEncoding="utf-8"%>
 				<div class="menu-area">
 					<nav>
 						<ul>
-							<li class="active"><a href="${pageContext.request.contextPath}">Trang Chủ</a></li>
-							<li><a href="Product">Sản Phẩm<i class="fa fa-angle-down"></i></a>
+							<%
+								String[] str = request.getRequestURI().split("/");
+								String tmp = null;
+								//get url page
+								tmp = str[str.length-1];
+								String op = "", op2 = "", op3 = "", op4 = "";
+								
+								
+								if(tmp.equals("home.jsp")) op = "active";
+								else if(tmp.equals("shop.jsp")) op2 = "active";
+								else if(tmp.equals("cart.jsp")) op3 = "active";
+								else if(tmp.equals("contact.jsp")) op4 = "active";
+								
+							%>
+							
+							<li class ="<%=op %>"><a href="${pageContext.request.contextPath}">Trang Chủ</a></li>
+							<li class ="<%=op2 %>"><a href="Product">Sản Phẩm<i class="fa fa-angle-down"></i></a>
 								<div class="sub-menu sub-menu-2">
 									<ul>
 										<%ArrayList<CategoryModel> arrCate =(ArrayList<CategoryModel>)request.getAttribute("category");
@@ -132,11 +130,8 @@ pageEncoding="utf-8"%>
 									</ul>
 								</div>
 							</li>
-							<li><a href="Cart">Giỏ Hàng</a></li>
-							<li><a href="Contact">Liên Hệ</a></li>
-							<!-- Neu nhu la admin thi se xuat hien cai tab quan ly nay bam vao thi se nhay qua
-							trang dashboard -->
-							<li><a href="Dashboard">Quản Lý</a></li>
+							<li class ="<%=op3 %>"><a href="Cart">Giỏ Hàng</a></li>
+							<li class ="<%=op4 %>"><a href="Contact">Liên Hệ</a></li>
 						</ul>
 					</nav>
 				</div>
