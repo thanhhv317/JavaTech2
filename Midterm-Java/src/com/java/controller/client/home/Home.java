@@ -24,5 +24,67 @@ public class Home extends HttpServlet {
 		req.setAttribute("category", array);
 		req.getRequestDispatcher("view/client/home.jsp").forward(req, resp);
 	}
+	
+	public ArrayList<BookViewHomeClient> RandomProduct(int count) {
+		
+		ArrayList<BookViewHomeClient> BookListRandom = new ArrayList<BookViewHomeClient>();
+		
+		ArrayList<BookViewHomeClient> List = GetAllBook();
+		Random rand = new Random();
+		
+		for(int i=0; i < count; ++i) {
+			int n = rand.nextInt(List.size());
+			BookListRandom.add(List.get(n));
+		}
+		
+		return BookListRandom;
+		
+	}
+	
+	public ArrayList<BookViewHomeClient> GetListBookDESC(){
+		ConnectDB conn = new ConnectDB();
+		String sql = "Select * from books where Status = 1 orderby bookId DESC limit 12";
+
+		ResultSet rs = conn.getData(sql);
+		ArrayList<BookViewHomeClient> Books = new ArrayList<BookViewHomeClient>();
+		
+		try {
+			while(rs.next()){
+				BookViewHomeClient book = new BookViewHomeClient();
+				book.BookID = rs.getInt(1);
+				book.BookName = rs.getString(4);
+				book.Image = rs.getString(7);
+				book.Price = rs.getInt(6);
+				Books.add(book);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return Books;
+	}
+	
+	public ArrayList<BookViewHomeClient> GetAllBook(){
+		ConnectDB conn = new ConnectDB();
+		String sql = "Select * from books where Status = 1";
+
+		ResultSet rs = conn.getData(sql);
+		ArrayList<BookViewHomeClient> Books = new ArrayList<BookViewHomeClient>();
+		
+		try {
+			while(rs.next()){
+				BookViewHomeClient book = new BookViewHomeClient();
+				book.BookID = rs.getInt(1);
+				book.BookName = rs.getString(4);
+				book.Image = rs.getString(7);
+				book.Price = rs.getInt(6);
+				Books.add(book);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return Books;
+	}
 }
 
